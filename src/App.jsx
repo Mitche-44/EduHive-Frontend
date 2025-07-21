@@ -8,9 +8,10 @@ import Navbar from "./components/common/Navbar.jsx";
 import Footer from "./components/common/Footer.jsx";
 
 // Routes
-import ClientRoutes from "./routes/ClientRoutes.jsx";
+import LearnerRoutes from "./routes/LearnerRoutes.jsx";
 import AdminRoutes from "./routes/AdminRoutes.jsx";
-import ProtectedRoute from "./routes/ProtectedRoute.jsx";
+import ContributorRoutes from "./routes/ContributorRoutes.jsx";
+// import ProtectedRoute from "./routes/ProtectedRoute.jsx";
 
 const App = () => {
   return (
@@ -21,17 +22,19 @@ const App = () => {
         <main className="flex-grow container mx-auto px-4 py-6">
           <Routes>
             {/* User-facing pages */}
-            <Route path="/*" element={<ClientRoutes />} />
+            <Route path="/*" element={<LearnerRoutes />} />
+            <Route path="/*" element={<AdminRoutes />} />
+            <Route path="/*" element={<ContributorRoutes />} />
 
             {/* Admin dashboard pages */}
-            <Route
+            {/* <Route
               path="/admin/*"
               element={
                 <ProtectedRoute role="admin">
                   <AdminRoutes />
                 </ProtectedRoute>
               }
-            />
+            /> */}
           </Routes>
         </main>
 
