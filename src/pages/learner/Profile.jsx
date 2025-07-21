@@ -1,3 +1,9 @@
-import { Button } from "@/components/ui/button";
+import React from 'react'
 
-import { Mail, Lock } from "lucide-react";
+export default function Profile() {
+  return (
+    <div>
+      
+    </div>
+  )
+}
