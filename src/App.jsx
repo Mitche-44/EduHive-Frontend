@@ -1,5 +1,6 @@
 import './App.css';
 
+
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -13,6 +14,13 @@ import Path from './pages/learner/Path';
 
 
 // import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+
+// // Routes
+// import LearnerRoutes from "./routes/LearnerRoutes.jsx";
+// import AdminRoutes from "./routes/AdminRoutes.jsx";
+// import ContributorRoutes from "./routes/ContributorRoutes.jsx";
+// // import ProtectedRoute from "./routes/ProtectedRoute.jsx";
 
 // // Common Layout Components
 // import Navbar from "./components/common/Navbar.jsx";
@@ -44,7 +52,6 @@ import Home from "./pages/learner/Home.jsx";
 //import ContributorRoutes from "./routes/ContributorRoutes.jsx";
 
 // import ProtectedRoute from "./routes/ProtectedRoute.jsx";
-
 
 
 function App() {
