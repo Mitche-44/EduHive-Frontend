@@ -1,7 +1,9 @@
 
+
 import React from 'react';
 import { Input } from '@shadcn/ui/input';
 import { Card, CardContent } from '@shadcn/ui/card';
+import { Button } from '@shadcn/ui/button';
 import { Calendar } from 'lucide-react';
 
 export default function Profile() {
@@ -21,12 +23,12 @@ export default function Profile() {
               {/* Avatar */}
               <div className="rounded-full border-4 border-blue-400 p-1">
                 <img
-                  src="/path/to/avatar.jpg"
+                  src="https://i.pravatar.cc/150?u=dennis"
                   alt="Dennis’s avatar"
                   className="w-24 h-24 rounded-full"
                 />
               </div>
-              {/* Name  and info */}
+              {/* Name + Handle + Joined Info */}
               <div>
                 <p className="text-sm text-gray-500">@denniswachira</p>
                 <h1 className="text-2xl font-bold">Dennis Wachira</h1>
@@ -37,11 +39,33 @@ export default function Profile() {
               </div>
             </div>
 
-            {/*  Blue Accent Shape */}
+            {/* Right: Blue Accent Shape */}
             <div className="h-32 w-16 bg-blue-400 rounded-l-full" />
           </div>
         </CardContent>
       </Card>
+
+      {/* About Section */}
+      <div className="w-full max-w-3xl space-y-4">
+        {/* Tab Label */}
+        <nav className="border-b">
+          <button className="pb-2 border-b-2 border-blue-500 text-lg font-medium">
+            About
+          </button>
+        </nav>
+
+        {/* Bio + Follow */}
+        <div className="flex items-start justify-between">
+          <div>
+            <h2 className="text-base font-semibold">Bio</h2>
+            <p className="mt-2 text-sm text-gray-700">
+              Hello Dennis here, I love programming and designing websites. <br />
+              My favourite language is React and Python.
+            </p>
+          </div>
+          <Button>Follow</Button>
+        </div>
+      </div>
     </main>
   );
 }
