@@ -2,9 +2,13 @@ import './App.css';
 //import Home from "./pages/learner/Home";
 import React from "react";
 
+//import AdminSidebar from './components/admin/AdminPanel';
+
+
 //import ContributorSidebar from './components/contributor/contributor-sidebar';
 
 //import AdminSidebar from './components/admin/AdminPanel';
+
 
 //import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -18,6 +22,8 @@ import React from "react";
 
 const App = () => {
   return (
+
+     {/* <Home /> */}
 
    
    //<AdminSidebar />
