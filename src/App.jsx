@@ -1,7 +1,7 @@
 import './App.css';
 //import Home from "./pages/learner/Home";
 import React from "react";
-
+//import Badges from './pages/learner/Badges';
 //import AdminSidebar from './components/admin/AdminPanel';
 
 
@@ -22,16 +22,12 @@ import React from "react";
 
 const App = () => {
   return (
+     
 
-     {/* <Home /> */}
-
-   
-   //<AdminSidebar />
-   {/* <ContributorSidebar /> */}
+    {/* <Badges /> */}
 
     
-    {/* <Home /> */}
-
+    
    
   );
 };
