@@ -1,7 +1,12 @@
 import './App.css';
 
 import React from "react";
-import Auth from "./pages/learner/Auth.jsx";
+
+
+import Path from './pages/learner/Path';
+
+
+
 
 // import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -15,10 +20,10 @@ import Auth from "./pages/learner/Auth.jsx";
 // import ProtectedRoute from "./routes/ProtectedRoute.jsx";
 
 
-const App = () => {
+function App() {
   return (
-    <Auth/>
+    <Path/>
   );
-};
+}
 
 export default App;
