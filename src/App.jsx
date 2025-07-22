@@ -1,7 +1,7 @@
 import './App.css';
-import Home from "./pages/learner/Home";
+//import Home from "./pages/learner/Home";
 import React from "react";
-import AdminSidebar from './components/admin/AdminPanel';
+//import AdminSidebar from './components/admin/AdminPanel';
 //import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Common Layout Components
@@ -14,7 +14,8 @@ import AdminSidebar from './components/admin/AdminPanel';
 
 const App = () => {
   return (
-   <Home />
+     {/* <Home /> */}
+
    
   );
 };
