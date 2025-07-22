@@ -4,7 +4,6 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 //import Home from "./pages/learner/Home";
-import React from "react";
 
 
 
@@ -22,7 +21,7 @@ import Path from './pages/learner/Path';
 // // Routes
 // import ClientRoutes from "./routes/ClientRoutes.jsx";
 // import AdminRoutes from "./routes/AdminRoutes.jsx";
-=======
+
 //import Badges from './pages/learner/Badges';
 //import AdminSidebar from './components/admin/AdminPanel';
 
@@ -51,24 +50,7 @@ import Home from "./pages/learner/Home.jsx";
 function App() {
   return (
 
-    <Router>
-      <SidebarProvider>
-        <div className="flex min-h-screen">
-          <AppSidebar />
-          <div className="flex-1 flex flex-col">
-            <SidebarTrigger className="m-4" />
-            <main className="flex-grow p-8 text-xl">
-              <Routes>
-                <Route path="/" element={<Home />} />
-                {/* You can add more test routes below if needed */}
-              </Routes>
-            </main>
-          </div>
-        </div>
-      </SidebarProvider>
-    </Router>
-
-    <Path/>
+  
 
      
 
