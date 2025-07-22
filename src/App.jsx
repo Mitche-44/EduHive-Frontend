@@ -1,32 +1,32 @@
 import './App.css';
-import Home from "./pages/learner/Home";
 import React from "react";
-<<<<<<< HEAD
-import Home from "./pages/learner/Home.jsx"; 
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-const App =()  => {
-return (
-<Home/>
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/common/AppSidebar.jsx";
 
-);
-
-=======
-import AdminSidebar from './components/admin/AdminPanel';
-//import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-// Common Layout Components
-//import Navbar from "./components/common/Navbar.jsx";
-//import Footer from "./components/common/Footer.jsx";
-
-// Routes
-//import ContributorRoutes from "./routes/ContributorRoutes.jsx";
-// import ProtectedRoute from "./routes/ProtectedRoute.jsx";
+// 👇 Import your landing page
+import Home from "./pages/learner/Home.jsx";
 
 const App = () => {
   return (
-   <Home />
-   
+    <Router>
+      <SidebarProvider>
+        <div className="flex min-h-screen">
+          <AppSidebar />
+          <div className="flex-1 flex flex-col">
+            <SidebarTrigger className="m-4" />
+            <main className="flex-grow p-8 text-xl">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                {/* You can add more test routes below if needed */}
+              </Routes>
+            </main>
+          </div>
+        </div>
+      </SidebarProvider>
+    </Router>
   );
->>>>>>> d9032954e46762bd445e65948e4a0322372a7afc
 };
+
 export default App;
