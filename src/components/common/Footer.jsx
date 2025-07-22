@@ -37,7 +37,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#A9A9A9] border-t border-indigo-700 mt-10">
+    <footer className="bg-[#1A2A44] text-[#F9FAFB] py-6">
       <div className="max-w-7xl mx-auto px-8 py-12">
         {/* Top Layer: Contact Us, Quick Links, Follow Us */}
         <div className="flex flex-row flex-wrap justify-between gap-8 text-sm text-white mb-8">

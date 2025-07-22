@@ -1,68 +1,81 @@
 
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Home, Users, DollarSign, BookOpen, MessageCircle, UserPlus, LogIn, Send} from 'lucide-react';
 // import logo from '/path-to-your-logo.png';
 import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
+  const handleRegisterClick = () => navigate("/register");
+  const handleSignInClick = () => navigate("/signin");
+  const handleQuoteClick = () => navigate("/quote");
+  
   return (
-    <header className="bg-[#A9A9A9] border-t border-indigo-700 mt-10">
-      <div className= "max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-8">
+    <header className="bg-[#1A2A44] text-[#F9FAFB] py-6">
+      <div className= "max-w-7xl mx-auto px-4 py-4 flex items-center justify-between md:px-6 lg:px-8">
         {/* Logo */}
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center space-x-4">
           {/* Uncomment and update with your logo path */}
           {/* <img src={logo} alt="EduHive Logo" className="h-12 w-auto" /> */}
-          <span className="text-2xl font-bold text-white">EduHive</span>
+          <span className="text-2xl font-bold text-[#F9FAFB]">EduHive</span>
         </div>
 
         {/* Nav Links */}
-        <nav className="flex items-center gap-6 text-white text-sm font-medium">
+        <nav className="flex items-center space-x-8 text-[#F9FAFB] text-base font-semibold">
           <Link
             to="/"
-            className="px-3 py-2 hover:text-blue-400 transition flex items-center gap-2 relative group"
+            className="relative px-4 py-2 hover:text-[#F97316] transition duration-300">
+            <Home size={16} />
+            Home
+            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#F97316] transform scale-x-0 hover:scale-x-100 transition-transform duration-300"></span>
+          
+          </Link>
+          <Link to="/team" className="relative px-4 py-2 hover:text-[#F97316] transition duration-300 flex items-center gap-2">
+            <Users size={16} />
+            Team
+            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#F97316] transform scale-x-0 hover:scale-x-100 transition-transform duration-300"></span>
+          </Link>
+          <Link
+            to="/pricing"
+            className="relative px-4 py-2 hover:text-[#F97316] transition duration-300"
           >
-            <Home size={14} />
-            <span>Home</span>
+            Pricing
+            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#F97316] transform scale-x-0 hover:scale-x-100 transition-transform duration-300"></span>
           </Link>
-          <Link to="/team" className="px-3 py-2 hover:text-blue-400 transition flex items-center gap-2">
-            <Users size={14} />
-            <span>Team</span>
-          </Link>
-          <Link to="/pricing" className="px-3 py-2 hover:text-blue-400 transition flex items-center gap-2">
-            {/* <DollarSign size={14} /> */}
-            <span>Pricing</span>
-          </Link>
-          <Link to="/resources" className="px-3 py-2 hover:text-blue-400 transition flex items-center gap-2">
+          <Link to="/resources" className="relative px-4 py-2 hover:text-[#F97316] transition duration-300">
             {/* <BookOpen size={14} /> */}
-            <span>Resources</span>
+            Resources
+            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#F97316] transform scale-x-0 hover:scale-x-100 transition-transform duration-300"></span>
           </Link>
-          <Link to="/testimonials" className="px-3 py-2 hover:text-blue-400 transition flex items-center gap-2">
-            <MessageCircle size={14} />
-            <span>Testimonials</span>
+          <Link to="/testimonials" className="relative px-4 py-2 hover:text-[#F97316] transition duration-300 flex items-center gap-2">
+            <MessageCircle size={16} />
+            Testimonials
+            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#F97316] transform scale-x-0 hover:scale-x-100 transition-transform duration-300"></span>
           </Link>
         </nav>
 
         {/* Buttons */}
-        <div className="flex items-center gap-4">
-          <Link to="/register">
-            <Button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg flex items-center gap-2">
-              <UserPlus size={14} />
-              <span>Register</span>
-            </Button>
-          </Link>
-          <Link to="/signin">
-            <Button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg flex items-center gap-2">
-              <LogIn size={14} />
-              <span>Sign In</span>
-            </Button>
-          </Link>
-          <Link to="/quote">
-            <Button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg flex items-center gap-2">
-              <Send size={14} />
-              <span>GET QUOTE</span>
-            </Button>
-          </Link>
+        <div className="flex space-x-4">
+          <Button
+            onClick={handleRegisterClick}
+            className="bg-gradient-to-r from-[#1A2A44] to-[#F97316] hover:from-[#F97316] hover:to-[#1A2A44] text-[#F9FAFB] text-sm font-semibold py-2 px-6 rounded-lg transition duration-300 shadow-md"
+          >
+            Register
+          </Button>
+          <Button
+            onClick={handleSignInClick}
+            className="bg-gradient-to-r from-[#1A2A44] to-[#F97316] hover:from-[#F97316] hover:to-[#1A2A44] text-[#F9FAFB] text-sm font-semibold py-2 px-6 rounded-lg transition duration-300 shadow-md"
+          >
+            Sign In
+          </Button>
+          <Button
+            onClick={handleQuoteClick}
+            className="bg-gradient-to-r from-[#1A2A44] to-[#F97316] hover:from-[#F97316] hover:to-[#1A2A44] text-[#F9FAFB] text-sm font-semibold py-2 px-6 rounded-lg transition duration-300 shadow-md"
+          >
+            Request Quote
+          </Button>
         </div>
       </div>
     </header>
