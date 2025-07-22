@@ -1,86 +1,72 @@
-// /src/components/common/Navbar.jsx
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
+
+
+import { Link } from 'react-router-dom';
+import { Home, Users, DollarSign, BookOpen, MessageCircle, UserPlus, LogIn, Send} from 'lucide-react';
+// import logo from '/path-to-your-logo.png';
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
 
-const links = [
-  { label: "Home", href: "/" },
-  { label: "Team", href: "#team" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Testimonials", href: "#testimonials" },
-  { label: "Resources", href: "#resources" },
-];
-
-export default function Navbar() {
-  const [open, setOpen] = useState(false);
-
+const Navbar = () => {
   return (
-    <header className="border-b bg-white sticky top-0 z-50">
-      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+    <header className="bg-[#A9A9A9] border-t border-indigo-700 mt-10">
+      <div className= "max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-8">
         {/* Logo */}
-        <Link to="/" className="text-xl font-bold text-primary">
-          EduHive
-        </Link>
+        <div className="flex items-center space-x-3">
+          {/* Uncomment and update with your logo path */}
+          {/* <img src={logo} alt="EduHive Logo" className="h-12 w-auto" /> */}
+          <span className="text-2xl font-bold text-white">EduHive</span>
+        </div>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-6">
-          {links.map(({ label, href }) => (
-            <a
-              key={href}
-              href={href}
-              className="text-sm font-medium text-muted-foreground hover:text-primary"
-            >
-              {label}
-            </a>
-          ))}
-
-          <div className="ml-4 flex items-center gap-2">
-            <Button variant="outline" size="sm">
-              Register
-            </Button>
-            <Button variant="default" size="sm">
-              Sign Up
-            </Button>
-            <Button variant="secondary" size="sm">
-              Get a Quote
-            </Button>
-          </div>
+        {/* Nav Links */}
+        <nav className="flex items-center gap-6 text-white text-sm font-medium">
+          <Link
+            to="/"
+            className="px-3 py-2 hover:text-blue-400 transition flex items-center gap-2 relative group"
+          >
+            <Home size={14} />
+            <span>Home</span>
+          </Link>
+          <Link to="/team" className="px-3 py-2 hover:text-blue-400 transition flex items-center gap-2">
+            <Users size={14} />
+            <span>Team</span>
+          </Link>
+          <Link to="/pricing" className="px-3 py-2 hover:text-blue-400 transition flex items-center gap-2">
+            {/* <DollarSign size={14} /> */}
+            <span>Pricing</span>
+          </Link>
+          <Link to="/resources" className="px-3 py-2 hover:text-blue-400 transition flex items-center gap-2">
+            {/* <BookOpen size={14} /> */}
+            <span>Resources</span>
+          </Link>
+          <Link to="/testimonials" className="px-3 py-2 hover:text-blue-400 transition flex items-center gap-2">
+            <MessageCircle size={14} />
+            <span>Testimonials</span>
+          </Link>
         </nav>
 
-        {/* Mobile Button */}
-        <button onClick={() => setOpen(!open)} className="md:hidden">
-          {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      {open && (
-        <div className="md:hidden border-t bg-white">
-          <nav className="px-4 py-3 flex flex-col space-y-2">
-            {links.map(({ label, href }) => (
-              <a
-                key={href}
-                href={href}
-                className="text-sm font-medium text-muted-foreground hover:text-primary"
-              >
-                {label}
-              </a>
-            ))}
-            <div className="pt-3 flex flex-col gap-2">
-              <Button variant="outline" size="sm">
-                Register
-              </Button>
-              <Button variant="default" size="sm">
-                Sign Up
-              </Button>
-              <Button variant="secondary" size="sm">
-                Get a Quote
-              </Button>
-            </div>
-          </nav>
+        {/* Buttons */}
+        <div className="flex items-center gap-4">
+          <Link to="/register">
+            <Button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg flex items-center gap-2">
+              <UserPlus size={14} />
+              <span>Register</span>
+            </Button>
+          </Link>
+          <Link to="/signin">
+            <Button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg flex items-center gap-2">
+              <LogIn size={14} />
+              <span>Sign In</span>
+            </Button>
+          </Link>
+          <Link to="/quote">
+            <Button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg flex items-center gap-2">
+              <Send size={14} />
+              <span>GET QUOTE</span>
+            </Button>
+          </Link>
         </div>
-      )}
+      </div>
     </header>
   );
-}
+};
+
+export default Navbar;
