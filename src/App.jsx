@@ -1,7 +1,7 @@
 import './App.css';
-import Home from "./pages/learner/Home";
+//import Home from "./pages/learner/Home";
 import React from "react";
-import ContributorSidebar from './components/contributor/contributor-sidebar';
+//import ContributorSidebar from './components/contributor/contributor-sidebar';
 //import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Common Layout Components
@@ -16,7 +16,8 @@ const App = () => {
   return (
    
    //<AdminSidebar />
-   <ContributorSidebar />
+   {/* <ContributorSidebar /> */}
+   
   );
 };
 
