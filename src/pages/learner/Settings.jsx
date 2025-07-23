@@ -1,15 +1,16 @@
+// /home/enock/Development/code/phase_5/EduHive-Frontend/src/pages/learner/Settings.jsx
 
 import React, { useState } from 'react';
-import { Input } from '@shadcn/ui/input';
+import { Input } from '@/components/ui/input';
 import {
   Select,
   SelectTrigger,
   SelectValue,
   SelectContent,
   SelectItem,
-} from '@shadcn/ui/select';
-import { Card, CardContent } from '@shadcn/ui/card';
-import { Button } from '@shadcn/ui/button';
+} from '@/components/ui/select';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import { Bell } from 'lucide-react';
 
 export default function Settings() {
@@ -20,13 +21,11 @@ export default function Settings() {
     <main className="mx-auto max-w-4xl p-8 space-y-6">
       {/* Top Bar */}
       <div className="flex items-center justify-between">
-        {/* Greeting & Date */}
         <div>
           <h1 className="text-2xl font-bold">Welcome, Dennis!</h1>
           <p className="text-sm text-gray-500">Tue 07 June 2022</p>
         </div>
 
-        {/* Search */}
         <div className="flex-1 px-8">
           <Input
             placeholder="Search…"
@@ -35,7 +34,6 @@ export default function Settings() {
           />
         </div>
 
-        {/* Notifications & Avatar */}
         <div className="flex items-center space-x-4">
           <Bell className="w-6 h-6 text-gray-600" />
           <img
@@ -65,12 +63,8 @@ export default function Settings() {
       <Card className="w-full">
         <CardContent className="p-8 space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Full Name */}
             <div>
-              <label
-                htmlFor="fullName"
-                className="block text-sm font-medium mb-2"
-              >
+              <label htmlFor="fullName" className="block text-sm font-medium mb-2">
                 Full Name
               </label>
               <Input
@@ -81,12 +75,8 @@ export default function Settings() {
               />
             </div>
 
-            {/* Nick Name */}
             <div>
-              <label
-                htmlFor="nickName"
-                className="block text-sm font-medium mb-2"
-              >
+              <label htmlFor="nickName" className="block text-sm font-medium mb-2">
                 Nick Name
               </label>
               <Input
@@ -97,12 +87,8 @@ export default function Settings() {
               />
             </div>
 
-            {/* Gender */}
             <div>
-              <label
-                htmlFor="gender"
-                className="block text-sm font-medium mb-2"
-              >
+              <label htmlFor="gender" className="block text-sm font-medium mb-2">
                 Gender
               </label>
               <Select disabled={!isEditing}>
@@ -117,12 +103,8 @@ export default function Settings() {
               </Select>
             </div>
 
-            {/* Country */}
             <div>
-              <label
-                htmlFor="country"
-                className="block text-sm font-medium mb-2"
-              >
+              <label htmlFor="country" className="block text-sm font-medium mb-2">
                 Country
               </label>
               <Select disabled={!isEditing}>
@@ -137,12 +119,8 @@ export default function Settings() {
               </Select>
             </div>
 
-            {/* Language */}
             <div>
-              <label
-                htmlFor="language"
-                className="block text-sm font-medium mb-2"
-              >
+              <label htmlFor="language" className="block text-sm font-medium mb-2">
                 Language
               </label>
               <Select disabled={!isEditing}>
@@ -157,12 +135,8 @@ export default function Settings() {
               </Select>
             </div>
 
-            {/* Phone Contact */}
             <div>
-              <label
-                htmlFor="phone"
-                className="block text-sm font-medium mb-2"
-              >
+              <label htmlFor="phone" className="block text-sm font-medium mb-2">
                 Phone Contact
               </label>
               <Input
@@ -175,7 +149,6 @@ export default function Settings() {
             </div>
           </div>
 
-          {/* My Email Address */}
           <div className="flex items-center space-x-3 mt-4">
             <Input
               type="checkbox"
@@ -193,7 +166,6 @@ export default function Settings() {
             </label>
           </div>
 
-          {/* Save Changes */}
           <div className="pt-4">
             <Button className="px-6 py-2 text-base" disabled={!isEditing}>
               Save Changes
