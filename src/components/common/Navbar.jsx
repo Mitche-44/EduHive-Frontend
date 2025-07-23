@@ -11,7 +11,7 @@ import { Button } from '@/components/ui/button';
 
 const Navbar = () => {
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-[#A9A9A9] border-b border-indigo-700">
+    <header className="fixed top-0 left-0 w-full z-50 bg-[#000066] border-b border-indigo-700">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-8">
         {/* Logo */}
         <div className="flex items-center space-x-3">
