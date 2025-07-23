@@ -1,24 +1,24 @@
-import './App.css';
-
+import "./App.css";
 import React from "react";
-import Module from "./pages/learner/Module.jsx";
+import { BrowserRouter as Router } from "react-router-dom";
 
-// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-// // Common Layout Components
-// import Navbar from "./components/common/Navbar.jsx";
-// import Footer from "./components/common/Footer.jsx";
-
-// // Routes
-// import ClientRoutes from "./routes/ClientRoutes.jsx";
-// import AdminRoutes from "./routes/AdminRoutes.jsx";
-// import ProtectedRoute from "./routes/ProtectedRoute.jsx";
+// Routes
+import LearnerRoutes from "./routes/LearnerRoutes.jsx";
+import { SidebarProvider } from "@/components/ui/sidebar";
 
 
 const App = () => {
   return (
-    <Module/>
+    <SidebarProvider>
+
+      <Router>
+        <LearnerRoutes />
+
+      </Router>
+    </SidebarProvider>
   );
 };
 
 export default App;
+
+
