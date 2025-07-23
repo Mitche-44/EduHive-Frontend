@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
-import { Search, Bell, Settings, MessageCircle, User, ChevronRight, Menu } from 'lucide-react'
+import React from 'react';
+import { Search, Bell, Settings, MessageCircle, User, ChevronRight } from 'lucide-react';
+import { SidebarTrigger } from "@/components/ui/sidebar";
 
 // Course Card Component
 const CourseCard = ({ title, instructor, progress, thumbnail, category }) => (
@@ -27,7 +28,7 @@ const CourseCard = ({ title, instructor, progress, thumbnail, category }) => (
       </div>
     </div>
   </div>
-)
+);
 
 // Progress Section Component
 const ProgressSection = ({ courses }) => (
@@ -46,7 +47,7 @@ const ProgressSection = ({ courses }) => (
       ))}
     </div>
   </div>
-)
+);
 
 // Mentor Component
 const MentorCard = ({ name, role, status }) => (
@@ -71,12 +72,10 @@ const MentorCard = ({ name, role, status }) => (
       </button>
     </div>
   </div>
-)
+);
 
 // Main Dashboard Component
 const Dashboard = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
-
   const courses = [
     {
       title: "Beginner's Guide To Becoming A Professional Front-End Developer",
@@ -99,12 +98,12 @@ const Dashboard = () => {
       thumbnail: "/api/placeholder/300/200",
       category: "EXPLAINER"
     }
-  ]
+  ];
 
   const tutors = [
     { name: "Erick Mose", date: "24/7/2025", status: "BEGINNER" },
     { name: "Asenath Kennedy", date: "25/7/2025", status: "BEGINNER" }
-  ]
+  ];
 
   const mentors = [
     { name: "Morgan Albert", role: "Software Developer", status: "Online" },
@@ -112,21 +111,16 @@ const Dashboard = () => {
     { name: "Nelson Omlung", role: "Backend Engineer", status: "Online" },
     { name: "Fiona Kamp", role: "Product Manager", status: "Offline" },
     { name: "Williams Kastrel", role: "Research and Data Analyst", status: "Offline" }
-  ]
+  ];
 
   return (
     <div className="flex h-screen bg-gray-50">
-      <div className="flex-1 flex flex-col overflow-hidden lg:ml-0">
+      <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
         <header className="bg-white border-b border-gray-200 px-4 lg:px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <button 
-                className="lg:hidden p-2 rounded-lg border border-gray-200 bg-white text-gray-600 hover:bg-gray-50"
-                onClick={() => setSidebarOpen(!sidebarOpen)}
-              >
-                <Menu size={20} />
-              </button>
+              <SidebarTrigger className="lg:hidden p-2 rounded-lg border border-gray-200 bg-white text-gray-600 hover:bg-gray-50" />
               <div className="flex-1 max-w-lg">
                 <div className="relative">
                   <Search size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -259,7 +253,7 @@ const Dashboard = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Dashboard;
