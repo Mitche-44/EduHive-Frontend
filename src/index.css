@@ -1,7 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-@tailwind screens;
+@import "tailwindcss";
 
 /* custom fonts and animations */
 @import "tw-animate-css";

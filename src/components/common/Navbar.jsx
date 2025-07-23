@@ -1,43 +1,55 @@
-
-
 import { Link } from 'react-router-dom';
-import { Home, Users, DollarSign, BookOpen, MessageCircle, UserPlus, LogIn, Send} from 'lucide-react';
-// import logo from '/path-to-your-logo.png';
-import { Button } from "@/components/ui/button";
+import {
+  Home,
+  Users,
+  MessageCircle,
+  UserPlus,
+  LogIn,
+  Send,
+} from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const Navbar = () => {
   return (
-    <header className="bg-[#A9A9A9] border-t border-indigo-700 mt-10">
-      <div className= "max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-8">
+    <header className="fixed top-0 left-0 w-full z-50 bg-[#A9A9A9] border-b border-indigo-700">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-8">
         {/* Logo */}
         <div className="flex items-center space-x-3">
-          {/* Uncomment and update with your logo path */}
-          {/* <img src={logo} alt="EduHive Logo" className="h-12 w-auto" /> */}
           <span className="text-2xl font-bold text-white">EduHive</span>
         </div>
 
         {/* Nav Links */}
-        <nav className="flex items-center gap-6 text-white text-sm font-medium">
+        <nav className="flex items-center gap- text-white text-sm font-medium">
           <Link
             to="/"
-            className="px-3 py-2 hover:text-blue-400 transition flex items-center gap-2 relative group"
+            className="px-3 py-2 hover:text-blue-400 transition flex items-center gap-2"
           >
             <Home size={14} />
             <span>Home</span>
           </Link>
-          <Link to="/team" className="px-3 py-2 hover:text-blue-400 transition flex items-center gap-2">
+          <Link
+            to="/team"
+            className="px-3 py-2 hover:text-blue-400 transition flex items-center gap-2"
+          >
             <Users size={14} />
             <span>Team</span>
           </Link>
-          <Link to="/pricing" className="px-3 py-2 hover:text-blue-400 transition flex items-center gap-2">
-            {/* <DollarSign size={14} /> */}
+          <Link
+            to="/pricing"
+            className="px-3 py-2 hover:text-blue-400 transition flex items-center gap-2"
+          >
             <span>Pricing</span>
           </Link>
-          <Link to="/resources" className="px-3 py-2 hover:text-blue-400 transition flex items-center gap-2">
-            {/* <BookOpen size={14} /> */}
+          <Link
+            to="/resources"
+            className="px-3 py-2 hover:text-blue-400 transition flex items-center gap-2"
+          >
             <span>Resources</span>
           </Link>
-          <Link to="/testimonials" className="px-3 py-2 hover:text-blue-400 transition flex items-center gap-2">
+          <Link
+            to="/testimonials"
+            className="px-3 py-2 hover:text-blue-400 transition flex items-center gap-2"
+          >
             <MessageCircle size={14} />
             <span>Testimonials</span>
           </Link>
