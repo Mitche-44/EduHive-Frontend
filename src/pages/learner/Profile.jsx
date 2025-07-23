@@ -61,7 +61,7 @@ const AboutSection = () => (
       <div className="flex-1">
         <h2 className="text-lg font-semibold mb-2">Bio</h2>
         <p className="text-base leading-relaxed text-gray-700">
-          Hello, I’m Dennis—a front-end enthusiast who loves crafting clean,
+          Hello, I’m Dennis a front-end enthusiast who loves crafting clean,
           responsive interfaces. My favorite tools are React, Tailwind CSS,
           and Python on the backend.
         </p>
