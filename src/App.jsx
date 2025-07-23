@@ -1,3 +1,4 @@
+
 import "./App.css";
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
@@ -6,11 +7,14 @@ import { BrowserRouter as Router } from "react-router-dom";
 import LearnerRoutes from "./routes/LearnerRoutes.jsx";
 import { SidebarProvider } from "@/components/ui/sidebar";
 
+
 const App = () => {
   return (
     <SidebarProvider>
+
       <Router>
         <LearnerRoutes />
+
       </Router>
     </SidebarProvider>
   );
