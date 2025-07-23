@@ -234,7 +234,7 @@ const navItems = [
   { title: "Community", url: "/community", icon: Users },
 ];
 
-export function AppSidebar() {
+export default function AppSidebar() {
   const location = useLocation();
 
   const isActive = (url) => location.pathname.startsWith(url);
