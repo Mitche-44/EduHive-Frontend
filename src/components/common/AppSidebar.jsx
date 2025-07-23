@@ -21,7 +21,7 @@ const navItems = [
   { title: "Settings", url: "/learner/settings", icon: Settings },
 ];
 
-export function AppSidebar() {
+export default function AppSidebar() {
   const location = useLocation();
 
   const isActive = (url) => location.pathname.startsWith(url);

@@ -1,9 +1,9 @@
 
 
 import React from 'react';
-import { Input } from '@shadcn/ui/input';
-import { Card, CardContent } from '@shadcn/ui/card';
-import { Button } from '@shadcn/ui/button';
+import { Input } from '@components/ui/input';
+import { Card, CardContent } from '@components/ui/card';
+import { Button } from '@components/ui/button';
 import { Calendar } from 'lucide-react';
 
 export default function Profile() {
