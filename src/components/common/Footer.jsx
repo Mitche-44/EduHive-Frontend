@@ -3,6 +3,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/Button";
+import { Input } from '@/components/ui/input'
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
 import {
   Facebook,
   Twitter,
@@ -23,7 +30,7 @@ export default function Footer() {
     setIsSubmitting(true);
     setSubmitMessage("");
 
-    // Simulate newsletter subscription API call
+    // Simulating newsletter subscription API call
     try {
       // Replace with your actual API endpoint
       await new Promise((resolve) => setTimeout(resolve, 1000)); // Mock delay
@@ -37,13 +44,13 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#1A2A44] text-[#F9FAFB] py-6">
+    <footer className="bg-[#005F84] text-[#182E6F] py-6">
       <div className="max-w-7xl mx-auto px-8 py-12">
         {/* Top Layer: Contact Us, Quick Links, Follow Us */}
-        <div className="flex flex-row flex-wrap justify-between gap-8 text-sm text-white mb-8">
+        <div className="flex flex-row flex-wrap justify-between gap-8 text-sm text-black mb-8">
           {/* Contact Us */}
           <div className="min-w-[180px]">
-            <h4 className="font-semibold text-white mb-3">Contact Us</h4>
+            <h4 className="font-semibold text-black mb-3">Contact Us</h4>
             <ul className="space-y-3">
               <li className="flex items-center">
                 <MapPin className="w-4 h-4 mr-2 text-indigo-300" aria-hidden="true" />
@@ -109,7 +116,7 @@ export default function Footer() {
           <div className="min-w-[180px]">
             <h4 className="font-semibold text-white mb-3">Follow Us</h4>
             <nav aria-label="Social media links">
-              <div className="flex space-x-6">
+              <div className="flex wrap space-x-6">
                 <a
                   href="https://facebook.com/eduhive"
                   target="_blank"
@@ -154,37 +161,16 @@ export default function Footer() {
         {/* Bottom Layer: Links, Logo & About, Newsletter */}
         <div className="flex flex-row flex-wrap justify-between gap-8 text-sm text-white border-t border-indigo-700 pt-8">
           {/* Links */}
-          <div className="min-w-[180px]">
-            <h4 className="font-semibold text-white mb-3">Links</h4>
-            <nav aria-label="Footer utility links">
-              <div className="flex space-x-12">
-                <a
-                  href="#privacy"
-                  className="relative hover:text-indigo-300 transition duration-300 group focus:outline-none focus:text-indigo-300"
-                  aria-label="Privacy policy"
-                >
-                  Privacy
-                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-indigo-300 transform scale-x-0 group-hover:scale-x-100 group-focus:scale-x-100 transition-transform duration-300"></span>
-                </a>
-                <a
-                  href="#terms"
-                  className="relative hover:text-indigo-300 transition duration-300 group focus:outline-none focus:text-indigo-300"
-                  aria-label="Terms of service"
-                >
-                  Terms
-                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-indigo-300 transform scale-x-0 group-hover:scale-x-100 group-focus:scale-x-100 transition-transform duration-300"></span>
-                </a>
-                <a
-                  href="#support"
-                  className="relative hover:text-indigo-300 transition duration-300 group focus:outline-none focus:text-indigo-300"
-                  aria-label="Support page"
-                >
-                  Support
-                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-indigo-300 transform scale-x-0 group-hover:scale-x-100 group-focus:scale-x-100 transition-transform duration-300"></span>
-                </a>
-              </div>
-            </nav>
- |         </div>
+          {/* Column 3: Support */}
+        <div>
+          <h3 className="font-semibold text-white mb-3">Support</h3>
+          <ul className="space-y-2 text-indigo-300 text-sm">
+            <li><Link to="/faq" className="hover:text-white">FAQs</Link></li>
+            <li><Link to="/contact" className="hover:text-white">Contact Us</Link></li>
+            <li><Link to="/privacy" className="hover:text-white">Privacy Policy</Link></li>
+            <li><Link to="/terms" className="hover:text-white">Terms & Conditions</Link></li>
+          </ul>
+        </div>
 
           {/* Logo & About */}
           <div className="min-w-[180px]">
@@ -203,44 +189,29 @@ export default function Footer() {
           </div>
 
           {/* Newsletter */}
-          <div className="min-w-[180px]">
-            <h4 className="font-semibold text-white mb-3">Newsletter</h4>
-            <p className="text-indigo-200 mb-4">Subscribe to get the latest updates and offers.</p>
-            <form onSubmit={handleNewsletterSubmit} className="flex flex-col gap-2">
-              <label htmlFor="newsletter-email" className="sr-only">
-                Email address
-              </label>
-              <input
-                id="newsletter-email"
+          <Card className="bg-gray-800 text-white border border-indigo-700 shadow-none">
+          <CardHeader>
+            <CardTitle className="text-white text-lg">Subscribe to our Newsletter</CardTitle>
+            <p className="text-sm text-white-300">
+              Get weekly updates, resources, and offers.
+            </p>
+          </CardHeader>
+          <CardContent>
+            <form className="flex flex-col gap-3">
+              <Input
                 type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-2 border border-indigo-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-indigo-800 text-white placeholder-indigo-300"
-                required
-                aria-required="true"
+                placeholder="you@example.com"
+                className="bg-beige-700 text-white border-indigo-600 placeholder:text-indigo-300"
               />
               <Button
                 type="submit"
-                disabled={isSubmitting}
-                aria-label="Subscribe to newsletter"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 font-semibold text-sm shadow-md"
-                >
-                {isSubmitting ? "Subscribing..." : "Subscribe"}
-                </Button>
-
-            </form>
-            {submitMessage && (
-              <p
-                className={`mt-2 text-sm ${
-                  submitMessage.includes("successfully") ? "text-green-300" : "text-red-300"
-                }`}
-                role="alert"
+                className="bg-blue-600 hover:bg-blue-700 text-white"
               >
-                {submitMessage}
-              </p>
-            )}
-          </div>
+                Subscribe
+              </Button>
+            </form>
+          </CardContent>
+        </Card>
         </div>
       </div>
 
