@@ -13,6 +13,7 @@ import Footer from "./components/common/Footer.jsx";
 // import AdminRoutes from "./routes/AdminRoutes.jsx";
 // import ContributorRoutes from "./routes/ContributorRoutes.jsx";
 // // import ProtectedRoute from "./routes/ProtectedRoute.jsx";
+import LearnerLeaderboardPage from "./pages/learner/Leaderboard";
 
 const App = () => {
   return (
@@ -22,6 +23,9 @@ const App = () => {
 
       {/* Footer */}
       <Footer />
+
+      {/* leaderboard page */}
+      <LearnerLeaderboardPage className="flex-grow bg-[#F9FAFB]" />
     </div>
   );
 };
