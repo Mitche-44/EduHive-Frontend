@@ -1,5 +1,3 @@
-
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/Button";
@@ -221,3 +219,5 @@ export default function Footer() {
     </footer>
   );
 }
+
+

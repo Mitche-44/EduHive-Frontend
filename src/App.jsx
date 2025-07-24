@@ -1,5 +1,8 @@
-import './App.css';
+import "./App.css";
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 
+<<<<<<< HEAD
 
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -48,14 +51,16 @@ import { AppSidebar } from "@/components/common/AppSidebar.jsx";
 
 // 👇 Import your landing page
 import Home from "./pages/learner/Home.jsx";
+=======
+>>>>>>> 336e2ad5176aef343f3d57742d7c6bac1c2e2657
 // Routes
-//import ContributorRoutes from "./routes/ContributorRoutes.jsx";
+import LearnerRoutes from "./routes/LearnerRoutes.jsx";
+import { SidebarProvider } from "@/components/ui/sidebar";
 
-// import ProtectedRoute from "./routes/ProtectedRoute.jsx";
 
-
-function App() {
+const App = () => {
   return (
+<<<<<<< HEAD
     <div className="flex flex-col min-h-screen">
       {/* Navbar */}
       <Navbar />
@@ -66,7 +71,22 @@ function App() {
       {/* leaderboard page */}
       <LearnerLeaderboardPage className="flex-grow bg-[#F9FAFB]" />
     </div>
+=======
+    <SidebarProvider>
+
+      <Router>
+        <LearnerRoutes />
+
+      </Router>
+    </SidebarProvider>
+>>>>>>> 336e2ad5176aef343f3d57742d7c6bac1c2e2657
   );
-}
+};
 
 export default App;
+
+
+
+
+
+

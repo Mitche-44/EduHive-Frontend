@@ -40,7 +40,8 @@ export default function EmailRegisterForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 mt-6">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 mt-6 max-w-md mx-auto">
+
       {/* First Name */}
        <h1 className="text-center text-2xl font-bold mb-4">Welcome!</h1>
 
