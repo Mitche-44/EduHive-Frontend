@@ -1,33 +1,28 @@
-import './App.css';
+import "./App.css";
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 
+// Routes
+import LearnerRoutes from "./routes/LearnerRoutes.jsx";
+import { SidebarProvider } from "@/components/ui/sidebar";
 
-import React, { useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-// Common Layout Components
-import Navbar from "./components/common/Navbar.jsx";
-import Footer from "./components/common/Footer.jsx";
-
-// // Routes
-// import LearnerRoutes from "./routes/LearnerRoutes.jsx";
-// import AdminRoutes from "./routes/AdminRoutes.jsx";
-// import ContributorRoutes from "./routes/ContributorRoutes.jsx";
-// // import ProtectedRoute from "./routes/ProtectedRoute.jsx";
-import LearnerLeaderboardPage from "./pages/learner/Leaderboard";
 
 const App = () => {
   return (
-    <div className="flex flex-col min-h-screen">
-      {/* Navbar */}
-      <Navbar />
+    <SidebarProvider>
 
-      {/* Footer */}
-      <Footer />
+      <Router>
+        <LearnerRoutes />
 
-      {/* leaderboard page */}
-      <LearnerLeaderboardPage className="flex-grow bg-[#F9FAFB]" />
-    </div>
+      </Router>
+    </SidebarProvider>
   );
 };
 
 export default App;
+
+
+
+
+
+

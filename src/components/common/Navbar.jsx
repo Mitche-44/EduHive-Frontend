@@ -1,5 +1,3 @@
-
-
 import { Link, useNavigate } from 'react-router-dom';
 import { Home, Users, DollarSign, BookOpen, MessageCircle, UserPlus, LogIn, Send} from 'lucide-react';
 // import logo from '/path-to-your-logo.png';
@@ -83,4 +81,19 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
