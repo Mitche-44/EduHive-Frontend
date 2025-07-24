@@ -12,7 +12,7 @@ import LearnerHomePage from "../pages/learner/Home";
 import LearnerLeaderboardPage from "../pages/learner/Leaderboard";
 import LearnerAuthPage from "../pages/learner/Auth";
 import LearnerPathPage from "../pages/learner/Path";
-// import LearnerProfilePage from "../pages/learner/Profile";
+import LearnerProfilePage from "../pages/learner/Profile";
 import LearnerQuizesPage from "../pages/learner/Quizes";
 import LearnerSettingsPage from "../pages/learner/Settings";
 
@@ -21,7 +21,7 @@ const LearnerRoutes = () => {
     <Routes>
       {/* Public layout for home + auth */}
       <Route element={<PublicLayout />}>
-        <Route path="/home" element={<LearnerHomePage />} />
+        <Route path="/*" element={<LearnerHomePage />} />
         <Route path="/auth" element={<LearnerAuthPage />} />
       </Route>
 
@@ -32,7 +32,7 @@ const LearnerRoutes = () => {
         <Route path="/community" element={<LearnerCommunityPage />} />
         <Route path="/leaderboard" element={<LearnerLeaderboardPage />} />
         <Route path="/path" element={<LearnerPathPage />} />
-        {/* <Route path="/profile" element={<LearnerProfilePage />} /> */}
+         <Route path="/profile" element={<LearnerProfilePage />} /> 
         <Route path="/quizes" element={<LearnerQuizesPage />} />
         <Route path="/settings" element={<LearnerSettingsPage />} />
       </Route>

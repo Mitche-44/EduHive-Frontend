@@ -1,11 +1,10 @@
 
 
 import React from 'react';
-import { Input } from '@components/ui/input';
-import { Card, CardContent } from '@components/ui/card';
-import { Button } from '@components/ui/button';
-import { Calendar } from 'lucide-react';
-
+import { Input } from '@/components/ui/input';
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "lucide-react";
 export default function Profile() {
   return (
     <main className="p-6 space-y-6">
