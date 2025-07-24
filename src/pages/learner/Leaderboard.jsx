@@ -104,4 +104,122 @@ export default function LeaderboardPage() {
 
   const currentUser = filtered.find((user) => user.name === currentUserName)
 
+  return (
+      <div className="min-h-screen bg-[#F9FAFB] py-12 px-4 sm:px-6 lg:px-8">
+        <Card className="max-w-6xl mx-auto">
+          <CardHeader className="space-y-6">
+            <div className="flex items-center gap-3">
+              <Trophy className="w-8 h-8 text-[#F97316]" />
+              <CardTitle className="text-3xl font-bold text-[#1A2A44]">Leaderboard</CardTitle>
+            </div>
+            <div className="flex flex-wrap gap-4 items-center">
+              <Input
+                placeholder="Search by username"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="max-w-md"
+              />
+              <Select onValueChange={setMonth} defaultValue="all">
+                <SelectTrigger className="w-32">
+                  <SelectValue placeholder="Month" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Months</SelectItem>
+                  <SelectItem value="2024-01">Jan</SelectItem>
+                  <SelectItem value="2024-02">Feb</SelectItem>
+                  <SelectItem value="2024-03">Mar</SelectItem>
+                  <SelectItem value="2024-04">Apr</SelectItem>
+                  <SelectItem value="2024-05">May</SelectItem>
+                  <SelectItem value="2024-06">Jun</SelectItem>
+                </SelectContent>
+              </Select>
+              <Select onValueChange={setActivity} defaultValue="all">
+                <SelectTrigger className="w-32">
+                  <SelectValue placeholder="Activity" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Activities</SelectItem>
+                  <SelectItem value="Courses">Courses</SelectItem>
+                  <SelectItem value="Quizzes">Quizzes</SelectItem>
+                </SelectContent>
+              </Select>
+              <Button
+                variant="outline"
+                onClick={() => setSortAsc((prev) => !prev)}
+                className="flex items-center gap-2"
+              >
+                <ArrowDownUp className="w-4 h-4" />
+                Sort ({sortAsc ? "Asc" : "Desc"})
+              </Button>
+            </div>
+          </CardHeader>
   
+          {currentUser && (
+            <CardContent className="border-y py-4 bg-indigo-50 mb-6">
+              <div className="flex items-center gap-4">
+                <Avatar className="h-10 w-10">
+                  <AvatarImage src={currentUser.avatar} />
+                  <AvatarFallback>{currentUser.name[0]}</AvatarFallback>
+                </Avatar>
+                <div>
+                  <p className="font-semibold">{currentUser.name} (You)</p>
+                  <p className="text-sm text-muted-foreground">
+                    Rank: #{currentUser.rank} • Points: {currentUser.points}
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          )}
+  
+          <CardContent className="overflow-x-auto rounded-md">
+            <table className="min-w-full text-sm text-left border">
+              <thead className="bg-indigo-600 text-white">
+                <tr>
+                  <th className="px-6 py-3">Rank</th>
+                  <th className="px-6 py-3">User</th>
+                  <th className="px-6 py-3">Joined</th>
+                  <th className="px-6 py-3">Activity</th>
+                  <th className="px-6 py-3">🥇</th>
+                  <th className="px-6 py-3">🥈</th>
+                  <th className="px-6 py-3">🥉</th>
+                  <th className="px-6 py-3">Points</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200 bg-white">
+                {filtered.map((entry, idx) => (
+                  <tr
+                    key={entry.rank}
+                    className={`hover:bg-gray-100 transition ${
+                      entry.name === currentUserName ? "bg-indigo-50 border-l-4 border-indigo-500" : ""
+                    }`}
+                  >
+                    <td className="px-6 py-4 font-semibold">
+                      {getMedalIcon(idx + 1) ?? idx + 1}
+                    </td>
+                    <td className="px-6 py-4">
+                      <div className="flex items-center gap-3">
+                        <Avatar className="h-8 w-8">
+                          <AvatarImage src={entry.avatar} />
+                          <AvatarFallback>{entry.name[0]}</AvatarFallback>
+                        </Avatar>
+                        <span>{entry.name}</span>
+                      </div>
+                    </td>
+                    <td className="px-6 py-4">{entry.joined}</td>
+                    <td className="px-6 py-4">{entry.activity}</td>
+                    <td className="px-6 py-4 text-yellow-500 font-bold">{entry.medals.gold}</td>
+                    <td className="px-6 py-4 text-gray-500 font-bold">{entry.medals.silver}</td>
+                    <td className="px-6 py-4 text-orange-500 font-bold">{entry.medals.bronze}</td>
+                    <td className="px-6 py-4 font-semibold text-indigo-700">{entry.points}</td>
+                  </tr>
+                ))}
+              </tbody>
+          
+            </table>
+          </CardContent>
+        </Card>
+      </div>
+    )
+  }
+
+
