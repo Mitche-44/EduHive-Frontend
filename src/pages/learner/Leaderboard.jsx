@@ -72,3 +72,24 @@ const getMedalIcon = (rank) => {
   return null;
 };
 
+export default function LeaderboardPage() {
+  const [searchTerm, setSearchTerm] = useState("")
+  const [sortAsc, setSortAsc] = useState(false)
+  const [month, setMonth] = useState("all")
+  const [activity, setActivity] = useState("all")
+  const [liveData, setLiveData] = useState(initialLeaderboard)
+
+  const currentUserName = "You"
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setLiveData((prev) =>
+        prev.map((u) =>
+          u.name === "You"
+            ? { ...u, points: u.points + Math.floor(Math.random() * 5) }
+            : u
+        )
+      )
+    }, 5000)
+    return () => clearInterval(interval)
+  }, [])
