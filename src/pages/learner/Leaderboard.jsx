@@ -93,3 +93,15 @@ export default function LeaderboardPage() {
     }, 5000)
     return () => clearInterval(interval)
   }, [])
+
+  const filtered = liveData
+    .filter((u) =>
+      u.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+      (month === "all" || u.joined.startsWith(month)) &&
+      (activity === "all" || u.activity === activity)
+    )
+    .sort((a, b) => (sortAsc ? a.points - b.points : b.points - a.points))
+
+  const currentUser = filtered.find((user) => user.name === currentUserName)
+
+  
