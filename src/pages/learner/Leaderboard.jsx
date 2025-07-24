@@ -64,4 +64,11 @@ const initialLeaderboard = [
     medals: { gold: 0, silver: 1, bronze: 2 },
   },
 ]
+const getMedalIcon = (rank) => {
+  if (rank === 1) return "🥇";
+  if (rank === 2) return "🥈";
+  if (rank === 3) return "🥉";
+  if (rank === 4 || rank === 5) return "🎖️";
+  return null;
+};
 
