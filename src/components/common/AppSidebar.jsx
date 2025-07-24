@@ -1,4 +1,3 @@
-
 import {
   Sidebar,
   SidebarContent,
@@ -146,8 +145,6 @@ export default function AppSidebar() {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>
-    </div>
-  );
+    </div>
+  );
 }
-
-
