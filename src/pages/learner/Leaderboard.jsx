@@ -65,10 +65,10 @@ const initialLeaderboard = [
   },
 ]
 const getMedalIcon = (rank) => {
-  if (rank === 1) return "🥇";
-  if (rank === 2) return "🥈";
-  if (rank === 3) return "🥉";
-  if (rank === 4 || rank === 5) return "🎖️";
+  if (rank === 1) return "#🥇";
+  if (rank === 2) return "#🥈";
+  if (rank === 3) return "#🥉";
+  if (rank === 4 || rank === 5) return "#🎖️";
   return null;
 };
 
@@ -131,6 +131,12 @@ export default function LeaderboardPage() {
                   <SelectItem value="2024-04">Apr</SelectItem>
                   <SelectItem value="2024-05">May</SelectItem>
                   <SelectItem value="2024-06">Jun</SelectItem>
+                  <SelectItem value="2024-07">July</SelectItem>
+                  <SelectItem value="2024-08">August</SelectItem>
+                  <SelectItem value="2024-09">Sept</SelectItem>
+                  <SelectItem value="2024-10">Oct</SelectItem>
+                  <SelectItem value="2024-11">Nov</SelectItem>
+                  <SelectItem value="2024-12">Dec</SelectItem>
                 </SelectContent>
               </Select>
               <Select onValueChange={setActivity} defaultValue="all">
@@ -214,7 +220,17 @@ export default function LeaderboardPage() {
                   </tr>
                 ))}
               </tbody>
-          
+          {/* Pagination (static for now) */}
+              <div className="flex justify-center gap-2 mt-6">
+                  {[1, 2, 3, 4, 5].map((n) => (
+                  <button
+                      key={n}
+                      className="w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 hover:bg-indigo-600 hover:text-white transition"
+                  >
+                      {n}
+                  </button>
+                  ))}
+              </div>
             </table>
           </CardContent>
         </Card>
