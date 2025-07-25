@@ -1,14 +1,14 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { Home, Users, DollarSign, BookOpen, MessageCircle, UserPlus, LogIn, Send} from 'lucide-react';
+import { Home, Users, MessageCircle, UserPlus, LogIn, Send, Badge, BadgeCheck} from 'lucide-react';
 // import logo from '/path-to-your-logo.png';
 import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
   const navigate = useNavigate();
 
-  const handleRegisterClick = () => navigate("/register");
-  const handleSignInClick = () => navigate("/signin");
-  const handleQuoteClick = () => navigate("/quote");
+  // const handleRegisterClick = () => navigate("/auth?tab=register");
+  const handleSignInClick = () => navigate("/auth?tab=login");
+  const handleQuoteClick = () => navigate("/plans");
   
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#1A2A44] text-[#F9FAFB] border-b border-[#005F84]">
@@ -31,46 +31,46 @@ const Navbar = () => {
             <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#274AB3] transform scale-x-0 hover:scale-x-100 transition-transform duration-300"></span>
           </Link>
           <Link 
-            to="/team" 
+            to="/community" 
             className="relative px-4 py-2 hover:text-[#274AB3] transition duration-300 flex items-center gap-2"
           >
             <Users size={14} />
-            Team
+            Forum
             <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#274AB3] transform scale-x-0 hover:scale-x-100 transition-transform duration-300"></span>
           </Link>
           <Link
-            to="/pricing"
+            to="/quizes"
             className="relative px-4 py-2 hover:text-[#274AB3] transition duration-300"
           >
-            Pricing
+            Competitions
             <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#274AB3] transform scale-x-0 hover:scale-x-100 transition-transform duration-300"></span>
           </Link>
           <Link 
-            to="/resources" 
+            to="/path" 
             className="relative px-4 py-2 hover:text-[#274AB3] transition duration-300"
           >
-            Resources
+            Courses
             <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#274AB3] transform scale-x-0 hover:scale-x-100 transition-transform duration-300"></span>
           </Link>
           <Link 
-            to="/testimonials" 
+            to="/badges" 
             className="relative px-4 py-2 hover:text-[#274AB3] transition duration-300 flex items-center gap-2"
           >
-            <MessageCircle size={14} />
-            Testimonials
+            <BadgeCheck size={14} />
+            Certifications 
             <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#005F84] transform scale-x-0 hover:scale-x-100 transition-transform duration-300"></span>
           </Link>
         </nav>
 
         {/* Buttons */}
         <div className="hidden md:flex space-x-2 lg:space-x-4">
-          <Button
+          {/* <Button
             onClick={handleRegisterClick}
             className="bg-gradient-to-r from-[#1A2A44] to-[#005F84] hover:from-[#D6B588] hover:to-[#1A2A44] text-[#F9FAFB] text-sm font-semibold py-2 px-4 lg:px-6 rounded-lg transition duration-300 shadow-md"
           >
             <UserPlus size={14} className="mr-2" />
             Register
-          </Button>
+          </Button> */}
           <Button
             onClick={handleSignInClick}
             className="bg-gradient-to-r from-[#1A2A44] to-[#005F84] hover:from-[#D6B588] hover:to-[#1A2A44] text-[#F9FAFB] text-sm font-semibold py-2 px-4 lg:px-6 rounded-lg transition duration-300 shadow-md"

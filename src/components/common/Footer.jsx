@@ -1,223 +1,206 @@
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/Button";
-import { Input } from '@/components/ui/input'
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
-import {
-  Facebook,
-  Twitter,
-  Instagram,
-  Linkedin,
-  Mail,
-  Phone,
-  MapPin,
-} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from '@/components/ui/input';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export default function Footer() {
-  const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState("");
+  const [showForm, setShowForm] = useState(false); // Toggle form visibility
 
-  const handleNewsletterSubmit = async (e) => {
-    e.preventDefault();
+  const schema = z.object({
+    name: z.string().min(2, "Name is required"),
+    phone: z
+      .string()
+      .min(9)
+      .max(15)
+      .regex(/^\+254\d{9}$/, "Phone must be +254XXXXXXXXX"),
+    email: z.string().email("Invalid email"),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
+    resolver: zodResolver(schema),
+    mode: "onBlur",
+  });
+
+  const onSubmit = async (data) => {
     setIsSubmitting(true);
-    setSubmitMessage("");
-
-    // Simulating newsletter subscription API call
+    setSubmitMessage("Submitting...");
     try {
-      // Replace with your actual API endpoint
-      await new Promise((resolve) => setTimeout(resolve, 1000)); // Mock delay
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       setSubmitMessage("Subscribed successfully!");
-      setEmail("");
+      reset();
     } catch (error) {
-      setSubmitMessage("Error subscribing. Please try again.");
+      setSubmitMessage("Error subscribing.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <footer className="bg-[#005F84] text-[#182E6F] py-6">
-      <div className="max-w-7xl mx-auto px-8 py-12">
-        {/* Top Layer: Contact Us, Quick Links, Follow Us */}
-        <div className="flex flex-row flex-wrap justify-between gap-8 text-sm text-black mb-8">
+    <footer className="bg-[#1A2A44] text-[#005F84] py-6">
+      <div className="max-w-7xl mx-auto px-6 py-10 space-y-8">
+
+        {/* Grid Top Section */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-12 gay-y-8 text-sm text-white">
+
           {/* Contact Us */}
-          <div className="min-w-[180px]">
-            <h4 className="font-semibold text-black mb-3">Contact Us</h4>
+          <div>
+            <h4 className="font-semibold mb-3 underline">Contact Us</h4>
             <ul className="space-y-3">
               <li className="flex items-center">
-                <MapPin className="w-4 h-4 mr-2 text-indigo-300" aria-hidden="true" />
+                <MapPin className="w-4 h-4 mr-2 text-indigo-300" />
                 <span>Nairobi, Kenya</span>
               </li>
               <li className="flex items-center">
-                <Phone className="w-4 h-4 mr-2 text-indigo-300" aria-hidden="true" />
-                <a href="tel:+254700000000" className="hover:text-indigo-300 transition duration-300">
+                <Phone className="w-4 h-4 mr-2 text-indigo-300" />
+                <a
+                  href="https://wa.me/254700000000"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-indigo-300 underline"
+                >
                   +254 700 000 000
                 </a>
+
               </li>
               <li className="flex items-center">
-                <Mail className="w-4 h-4 mr-2 text-indigo-300" aria-hidden="true" />
-                <a href="mailto:info@eduhive.com" className="hover:text-indigo-300 transition duration-300">
+                <Mail className="w-4 h-4 mr-2 text-indigo-300" />
+                <a
+                  href="https://mail.google.com/mail/u/0/#inbox?compose=new"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-indigo-300 underline"
+                >
                   info@eduhive.com
                 </a>
+
               </li>
             </ul>
           </div>
 
           {/* Quick Links */}
-          <div className="min-w-[180px]">
-            <h4 className="font-semibold text-white mb-3">Quick Links</h4>
-            <nav aria-label="Footer navigation">
-              <div className="flex space-x-12">
-                <ul className="space-y-3">
-                    <li>
-                    <Link
-                      to="/pricing"
-                      className="relative hover:text-indigo-300 transition duration-300 group focus:outline-none focus:text-indigo-300"
-                      aria-label="Pricing page"
-                    >
-                      Pricing
-                      <span className="absolute bottom-0 left-0 w-full h-0.5 bg-indigo-300 transform scale-x-0 group-hover:scale-x-100 group-focus:scale-x-100 transition-transform duration-300"></span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/resources"
-                      className="relative hover:text-indigo-300 transition duration-300 group focus:outline-none focus:text-indigo-300"
-                      aria-label="Resources page"
-                    >
-                      Resources
-                      <span className="absolute bottom-0 left-0 w-full h-0.5 bg-indigo-300 transform scale-x-0 group-hover:scale-x-100 group-focus:scale-x-100 transition-transform duration-300"></span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/testimonials"
-                      className="relative hover:text-indigo-300 transition duration-300 group focus:outline-none focus:text-indigo-300"
-                      aria-label="Testimonials page"
-                    >
-                      Testimonials
-                      <span className="absolute bottom-0 left-0 w-full h-0.5 bg-indigo-300 transform scale-x-0 group-hover:scale-x-100 group-focus:scale-x-100 transition-transform duration-300"></span>
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </nav>
+          <div>
+            <h4 className="font-semibold mb-3">Quick Links</h4>
+            <ul className="space-y-2">
+              <li><Link to="/plans" className="hover:text-indigo-300">Pricing</Link></li>
+              <li><Link to="/dashboard" className="hover:text-indigo-300">Resources</Link></li>
+              <li><Link to="/testimonials" className="hover:text-indigo-300">Testimonials</Link></li>
+            </ul>
           </div>
 
           {/* Follow Us */}
-          <div className="min-w-[180px]">
-            <h4 className="font-semibold text-white mb-3">Follow Us</h4>
-            <nav aria-label="Social media links">
-              <div className="flex wrap space-x-6">
-                <a
-                  href="https://facebook.com/eduhive"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-indigo-300 transition duration-300 focus:outline-none focus:text-indigo-300"
-                  aria-label="Follow EduHive on Facebook"
-                >
-                  <Facebook className="w-6 h-6" aria-hidden="true" />
-                </a>
-                <a
-                  href="https://twitter.com/eduhive"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-indigo-300 transition duration-300 focus:outline-none focus:text-indigo-300"
-                  aria-label="Follow EduHive on Twitter"
-                >
-                  <Twitter className="w-6 h-6" aria-hidden="true" />
-                </a>
-                <a
-                  href="https://instagram.com/eduhive"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-indigo-300 transition duration-300 focus:outline-none focus:text-indigo-300"
-                  aria-label="Follow EduHive on Instagram"
-                >
-                  <Instagram className="w-6 h-6" aria-hidden="true" />
-                </a>
-                <a
-                  href="https://linkedin.com/company/eduhive"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-indigo-300 transition duration-300 focus:outline-none focus:text-indigo-300"
-                  aria-label="Follow EduHive on LinkedIn"
-                >
-                  <Linkedin className="w-6 h-6" aria-hidden="true" />
-                </a>
-              </div>
-            </nav>
+          <div>
+            <h4 className="font-semibold mb-3">Follow Us</h4>
+            <div className="flex gap-4">
+              <a href="#"><Facebook className="w-5 h-5 hover:text-indigo-300" /></a>
+              <a href="#"><Twitter className="w-5 h-5 hover:text-indigo-300" /></a>
+              <a href="#"><Instagram className="w-5 h-5 hover:text-indigo-300" /></a>
+              <a href="#"><Linkedin className="w-5 h-5 hover:text-indigo-300" /></a>
+            </div>
+          </div>
+
+          {/* Support */}
+          <div>
+            <h4 className="font-semibold mb-3">Support</h4>
+            <ul className="space-y-2 text-indigo-300">
+              <li><Link to="/team" className="hover:text-white">Our Team</Link></li>
+              <li><Link to="/faqs" className="hover:text-white">FAQs</Link></li>
+              <li><Link to="/privacy-policy" className="hover:text-white">Privacy Policy</Link></li>
+              <li><Link to="/terms-and-conditions" className="hover:text-white">Terms & Conditions</Link></li>
+            </ul>
           </div>
         </div>
 
-        {/* Bottom Layer: Links, Logo & About, Newsletter */}
-        <div className="flex flex-row flex-wrap justify-between gap-8 text-sm text-white border-t border-indigo-700 pt-8">
-          {/* Links */}
-          {/* Column 3: Support */}
-        <div>
-          <h3 className="font-semibold text-white mb-3">Support</h3>
-          <ul className="space-y-2 text-indigo-300 text-sm">
-            <li><Link to="/faq" className="hover:text-white">FAQs</Link></li>
-            <li><Link to="/contact" className="hover:text-white">Contact Us</Link></li>
-            <li><Link to="/privacy" className="hover:text-white">Privacy Policy</Link></li>
-            <li><Link to="/terms" className="hover:text-white">Terms & Conditions</Link></li>
-          </ul>
-        </div>
-
-          {/* Logo & About */}
-          <div className="min-w-[180px]">
-            <Link
-              to="/"
-              className="flex items-center space-x-3 mb-4 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              aria-label="EduHive Home"
-            >
-              {/* Uncomment and update with your logo path */}
-              {/* <img src="/assets/logo.png" alt="EduHive Logo" className="h-10 w-10" /> */}
-              <span className="text-2xl font-bold text-white">EduHive</span>
-            </Link>
-            <p className="text-indigo-200">
-              Empowering learners with accessible, high-quality educational resources for the future.
+        {/* About and Toggle Newsletter Form */}
+        <div className="text-sm text-indigo-200">
+          <div className="mb-4">
+            <Link to="/" className="text-2xl font-bold text-white">EduHive</Link>
+            <p className="mt-2 max-w-xl">
+              Taking your first step in tech or elevating your career? EduHive offers a range of courses and resources. Join a vibrant community of learners and leaders.
             </p>
           </div>
 
-          {/* Newsletter */}
-          <Card className="bg-gray-800 text-white border border-indigo-700 shadow-none">
-          <CardHeader>
-            <CardTitle className="text-white text-lg">Subscribe to our Newsletter</CardTitle>
-            <p className="text-sm text-white-300">
-              Get weekly updates, resources, and offers.
-            </p>
-          </CardHeader>
-          <CardContent>
-            <form className="flex flex-col gap-3">
-              <Input
-                type="email"
-                placeholder="you@example.com"
-                className="bg-beige-700 text-white border-indigo-600 placeholder:text-indigo-300"
-              />
-              <Button
-                type="submit"
-                className="bg-blue-600 hover:bg-blue-700 text-white"
-              >
-                Subscribe
-              </Button>
-            </form>
-          </CardContent>
-        </Card>
+          <Button
+            className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded"
+            onClick={() => setShowForm(!showForm)}
+          >
+            {showForm ? "Hide Newsletter Form" : "Subscribe to Newsletter"}
+          </Button>
         </div>
-      </div>
 
-      <div className="border-t border-indigo-700 text-center text-indigo-200 text-xs py-4">
-        © {new Date().getFullYear()} EduHive. All rights reserved.
+        {/* Conditional Newsletter Form */}
+        {showForm && (
+          <Card className="bg-gray-800 text-white border border-indigo-700 shadow-none max-w-xl">
+            <CardHeader>
+              <CardTitle className="text-white text-lg">Subscribe to our Newsletter</CardTitle>
+              <p className="text-sm text-white-300">
+                Get updates on events, resources, and more!
+              </p>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
+                <div>
+                  <Input
+                    type="text"
+                    placeholder="Your Name"
+                    className="bg-gray-900 text-white placeholder:text-indigo-300"
+                    {...register("name")}
+                  />
+                  {errors.name && <p className="text-red-500 text-xs">{errors.name.message}</p>}
+                </div>
+                <div>
+                  <Input
+                    type="tel"
+                    placeholder="Phone Number"
+                    className="bg-gray-900 text-white placeholder:text-indigo-300"
+                    {...register("phone")}
+                  />
+                  {errors.phone && <p className="text-red-500 text-xs">{errors.phone.message}</p>}
+                </div>
+                <div>
+                  <Input
+                    type="email"
+                    placeholder="Email Address"
+                    className="bg-gray-900 text-white placeholder:text-indigo-300"
+                    {...register("email")}
+                  />
+                  {errors.email && <p className="text-red-500 text-xs">{errors.email.message}</p>}
+                </div>
+                <Button
+                  type="submit"
+                  className="bg-indigo-600 hover:bg-indigo-700"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Subscribing..." : "Subscribe"}
+                </Button>
+                {submitMessage && (
+                  <p className={`text-sm ${submitMessage.includes("Error") ? "text-red-500" : "text-green-500"}`}>
+                    {submitMessage}
+                  </p>
+                )}
+              </form>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Copyright */}
+        <div className="border-t border-indigo-700 text-center text-xs text-indigo-300 pt-4">
+          © {new Date().getFullYear()} EduHive. All rights reserved.
+        </div>
       </div>
     </footer>
   );
 }
-
 
