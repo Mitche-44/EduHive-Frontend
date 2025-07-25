@@ -50,7 +50,7 @@ const Community = () => {
         <div className="max-w-2xl">
           <h1 className="text-3xl font-semibold mb-2">Discussions</h1>
           <p className="text-gray-600 text-sm">
-            Discuss the EduHive platform & machine learning topics – this includes sharing feedback, asking questions, and more.
+            Discuss the EduHive platform & machine learning topics , this includes sharing feedback, asking questions, and more.
           </p>
         </div>
         <img
