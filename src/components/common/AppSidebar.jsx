@@ -1,3 +1,4 @@
+// Updated AppSidebar.jsx
 import { useState } from "react";
 import {
   Sidebar,
@@ -50,7 +51,7 @@ const navItems = [
   { title: "Settings", url: "/settings", icon: Settings },
 ];
 
-export default function AppSidebar() {
+export default function AppSidebar({ onToggle }) {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(true);
   const [expandedItems, setExpandedItems] = useState({});
@@ -58,7 +59,12 @@ export default function AppSidebar() {
   const isActive = (url) => location.pathname === url || location.pathname.startsWith(url + "/");
 
   const toggleSidebar = () => {
-    setIsOpen(!isOpen);
+    const newState = !isOpen;
+    setIsOpen(newState);
+    // Notify parent component about sidebar state change
+    if (onToggle) {
+      onToggle(newState);
+    }
   };
 
   const toggleExpanded = (title) => {
@@ -70,7 +76,7 @@ export default function AppSidebar() {
 
   return (
     <>
-      {/* Toggle Button */}
+      {/* Toggle Button for Mobile */}
       <button
         onClick={toggleSidebar}
         className="fixed top-20 left-4 z-50 p-2 bg-white border border-gray-200 rounded-lg shadow-lg hover:bg-gray-50 transition-all duration-200 md:hidden"
@@ -234,3 +240,4 @@ export default function AppSidebar() {
     </>
   );
 }
+
