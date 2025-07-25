@@ -1,84 +1,87 @@
 import React from 'react';
 import { Input } from '@/components/ui/input';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Calendar } from 'lucide-react';
-
-const SearchBar = () => (
-  <div className="w-full">
-    <Input
-      placeholder="Search for learners, courses…"
-      className="w-full py-3 text-base"
-    />
-  </div>
-);
-
-const ProfileHeader = () => (
-  <Card className="w-full">
-    <CardContent className="p-8">
-      <div className="flex items-center justify-between gap-8">
-        {/* Left: Avatar + Info */}
-        <div className="flex items-center space-x-8">
-          {/* Avatar */}
-          <div className="rounded-full ring-4 ring-blue-400 p-1">
-            <img
-              src="https://i.pravatar.cc/150?u=dennis"
-              alt="Dennis’s avatar"
-              className="w-32 h-32 rounded-full"
-            />
-          </div>
-
-          {/* Name + Handle + Joined Info */}
-          <div>
-            <p className="text-base text-gray-500 mb-1">@denniswachira</p>
-            <h1 className="text-3xl font-extrabold mb-2">Dennis Wachira</h1>
-            <div className="flex items-center text-gray-500 text-sm">
-              <Calendar className="h-4 w-4 mr-1" />
-              <span>Joined 2 days ago · last seen in the past day</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Right: Blue Accent Shape */}
-        <div className="h-40 w-20 bg-blue-400 rounded-l-full" />
-      </div>
-    </CardContent>
-  </Card>
-);
-
-const AboutSection = () => (
-  <div className="w-full space-y-6">
-    {/* Tab Label */}
-    <nav className="border-b">
-      <button className="pb-3 border-b-2 border-blue-500 text-xl font-semibold">
-        About
-      </button>
-    </nav>
-
-    {/* Bio + Follow */}
-    <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-      {/* Bio */}
-      <div className="flex-1">
-        <h2 className="text-lg font-semibold mb-2">Bio</h2>
-        <p className="text-base leading-relaxed text-gray-700">
-          Hello, I’m Dennis a front-end enthusiast who loves crafting clean,
-          responsive interfaces. My favorite tools are React, Tailwind CSS,
-          and Python on the backend.
-        </p>
-      </div>
-
-      {/* Follow Button */}
-      <Button className="py-2 px-6 text-base">Follow</Button>
-    </div>
-  </div>
-);
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Calendar, Mail, Phone, Globe } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Profile() {
   return (
-    <main className="mx-auto max-w-4xl p-8 space-y-8">
-      <SearchBar />
-      <ProfileHeader />
-      <AboutSection />
+    <main className="p-6 space-y-6 max-w-6xl mx-auto">
+      {/* Search Bar */}
+      <div className="max-w-xl">
+        <Input placeholder="Search" className="w-full" />
+      </div>
+
+      {/* Profile Header Card */}
+      <Card className="w-full max-w-3xl">
+        <CardContent>
+          <div className="flex items-center justify-between">
+            {/* Left: Avatar + Info */}
+            <div className="flex items-center space-x-6">
+              <div className="rounded-full border-4 border-blue-400 p-1">
+                <img
+                  src="https://i.pravatar.cc/150?u=dennis"
+                  alt="Dennis’s avatar"
+                  className="w-24 h-24 rounded-full"
+                />
+              </div>
+              <div>
+                <p className="text-sm text-gray-500">@denniswachira</p>
+                <h1 className="text-2xl font-bold">Dennis Wachira</h1>
+                <div className="flex items-center text-gray-500 text-sm mt-1">
+                  <Calendar className="h-4 w-4 mr-1" />
+                  <span>Joined 2 days ago · last seen in the past day</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right: Blue Accent Shape */}
+            <div className="h-32 w-16 bg-blue-400 rounded-l-full" />
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* About Section */}
+      <div className="w-full max-w-3xl space-y-4">
+        <nav className="border-b">
+          <button className="pb-2 border-b-2 border-blue-500 text-lg font-medium">
+            About
+          </button>
+        </nav>
+
+        <div className="flex items-start justify-between">
+          <div>
+            <h2 className="text-base font-semibold">Bio</h2>
+            <p className="mt-2 text-sm text-gray-700">
+              Hello Dennis here, I love programming and designing websites. <br />
+              My favourite language is React and Python.
+            </p>
+          </div>
+          <Link to="/learner/settings">
+            <Button variant="outline">Edit Profile</Button>
+          </Link>
+        </div>
+      </div>
+
+      {/* Contact Info Section */}
+      <div className="w-full max-w-3xl space-y-4">
+        <h2 className="text-base font-semibold">Contact Information</h2>
+        <div className="space-y-2 text-sm text-gray-700">
+          <div className="flex items-center gap-2">
+            <Mail className="w-4 h-4 text-gray-500" />
+            <span>wachira.dennis22@gmail.com</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Phone className="w-4 h-4 text-gray-500" />
+            <span>+254 712 345 678</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Globe className="w-4 h-4 text-gray-500" />
+            <span>Preferred Language: English</span>
+          </div>
+        </div>
+      </div>
     </main>
   );
 }
