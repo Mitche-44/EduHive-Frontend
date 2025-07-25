@@ -4,7 +4,6 @@ import { Routes, Route } from "react-router-dom";
 import LearnerLayout from "@/layouts/LearnerLayout";
 import PublicLayout from "@/layouts/PublicLayout";
 
-
 // Pages
 import LearnerBadgesPage from "../pages/learner/Badges";
 import LearnerCommunityPage from "../pages/learner/Community";
@@ -19,29 +18,13 @@ import LearnerProfilePage from "../pages/learner/Profile";
 import LearnerQuizesPage from "../pages/learner/Quizes";
 import LearnerSettingsPage from "../pages/learner/Settings";
 
-import LearnerPlansPage from "../pages/learner/Plans";
-import LearnerTestimonialsPage from "../pages/learner/Testimonials";
-
-import Team from "../components/admin/Team";
-import PrivacyPolicyPage from "../components/admin/PrivacyPolicy";
-import TermsPage from "../components/admin/TermsAndConditions";
-import FAQsPage from "../components/admin/FAQs";
-
-
 const LearnerRoutes = () => {
   return (
     <Routes>
       {/* Public layout for home + auth */}
       <Route element={<PublicLayout />}>
-        
-        <Route path="/auth" element={<LearnerAuthPage />} />
-        <Route path="/team" element={<Team />} />
-        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-        <Route path="/terms-and-conditions" element={<TermsPage />} /> 
-        <Route path="/faqs" element={<FAQsPage />} />
-
-        {/* This should be last to avoid greedy matching */} 
         <Route path="/*" element={<LearnerHomePage />} />
+        <Route path="/auth" element={<LearnerAuthPage />} />
       </Route>
 
       {/* Private layout with sidebar for learner pages */}
@@ -55,9 +38,6 @@ const LearnerRoutes = () => {
          <Route path="/profile" element={<LearnerProfilePage />} />
         <Route path="/quizes" element={<LearnerQuizesPage />} />
         <Route path="/settings" element={<LearnerSettingsPage />} />
-
-        <Route path="/plans" element={<LearnerPlansPage />} />
-        <Route path="/testimonials" element={<LearnerTestimonialsPage />} />
       </Route>
     </Routes>
   );

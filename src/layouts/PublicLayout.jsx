@@ -1,11 +1,6 @@
-import { Outlet } from "react-router-dom";
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
-
-
-{/* <Route path="/pricing" element={<Pricing />} />
-<Route path="/testimonials" element={<Testimonials />} /> */}
-
+import { Outlet } from "react-router-dom";
 
 export default function PublicLayout() {
   return (
