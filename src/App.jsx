@@ -1,14 +1,36 @@
-import './App.css';
+import "./App.css";
 import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 
-import Profile from './pages/learner/Profile.jsx';
+
+// Routes
+import LearnerRoutes from "./routes/LearnerRoutes.jsx";
+import { SidebarProvider } from "@/components/ui/sidebar";
 
 
-function App() {
+const App = () => {
   return (
-      <Profile />
-  
+    <SidebarProvider>
+
+      <Router>
+        <LearnerRoutes />
+
+      </Router>
+    </SidebarProvider>
   );
 };
 
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -2,12 +2,11 @@ import React from 'react';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Calendar, Mail, Phone, Globe } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Calendar } from "lucide-react";
 
 export default function Profile() {
   return (
-    <main className="p-6 space-y-6 max-w-6xl mx-auto">
+    <main className="p-6 space-y-6">
       {/* Search Bar */}
       <div className="max-w-xl">
         <Input placeholder="Search" className="w-full" />
@@ -19,6 +18,7 @@ export default function Profile() {
           <div className="flex items-center justify-between">
             {/* Left: Avatar + Info */}
             <div className="flex items-center space-x-6">
+              {/* Avatar */}
               <div className="rounded-full border-4 border-blue-400 p-1">
                 <img
                   src="https://i.pravatar.cc/150?u=dennis"
@@ -26,6 +26,7 @@ export default function Profile() {
                   className="w-24 h-24 rounded-full"
                 />
               </div>
+              {/* Name + Handle + Joined Info */}
               <div>
                 <p className="text-sm text-gray-500">@denniswachira</p>
                 <h1 className="text-2xl font-bold">Dennis Wachira</h1>
@@ -44,12 +45,14 @@ export default function Profile() {
 
       {/* About Section */}
       <div className="w-full max-w-3xl space-y-4">
+        {/* Tab Label */}
         <nav className="border-b">
           <button className="pb-2 border-b-2 border-blue-500 text-lg font-medium">
             About
           </button>
         </nav>
 
+        {/* Bio + Follow */}
         <div className="flex items-start justify-between">
           <div>
             <h2 className="text-base font-semibold">Bio</h2>
@@ -58,30 +61,16 @@ export default function Profile() {
               My favourite language is React and Python.
             </p>
           </div>
-          <Link to="/learner/settings">
-            <Button variant="outline">Edit Profile</Button>
-          </Link>
-        </div>
-      </div>
-
-      {/* Contact Info Section */}
-      <div className="w-full max-w-3xl space-y-4">
-        <h2 className="text-base font-semibold">Contact Information</h2>
-        <div className="space-y-2 text-sm text-gray-700">
-          <div className="flex items-center gap-2">
-            <Mail className="w-4 h-4 text-gray-500" />
-            <span>wachira.dennis22@gmail.com</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Phone className="w-4 h-4 text-gray-500" />
-            <span>+254 712 345 678</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Globe className="w-4 h-4 text-gray-500" />
-            <span>Preferred Language: English</span>
-          </div>
+          <Button>Follow</Button>
         </div>
       </div>
     </main>
   );
 }
+
+
+
+
+
+
+
