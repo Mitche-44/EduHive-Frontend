@@ -92,7 +92,7 @@ const Badges = () => {
       {/* Heading */}
       <h1 className="text-3xl font-bold mb-2">Badges</h1>
       <p className="text-gray-600 max-w-2xl mb-8">
-        From your first quiz to advanced challenges, EduHive rewards your
+        From your first quiz to advanced challenges to completing a course, EduHive rewards your
         progress with beautifully designed badges. Whether you're mastering a
         skill or supporting your peers, your efforts never go unnoticed.
       </p>
