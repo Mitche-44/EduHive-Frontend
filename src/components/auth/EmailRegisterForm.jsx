@@ -8,6 +8,9 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Eye, EyeOff, Mail, User } from 'lucide-react'
 import GoogleAuthButton from "./GoogleAuthButton"
+import { registerUser } from '@/api/auth'
+import { toast } from 'sonner' 
+import { useNavigate } from 'react-router-dom'
 
 const schema = z
   .object({
@@ -23,6 +26,7 @@ const schema = z
   })
 
 export default function EmailRegisterForm() {
+  const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirm, setShowConfirm] = useState(false)
 
@@ -35,26 +39,32 @@ export default function EmailRegisterForm() {
   })
 
   const onSubmit = async (data) => {
-    console.log('Form submitted:', data)
-    // Call supabase.auth.signUp() or custom logic here
+    try {
+      const payload = {
+        first_name: data.firstName,
+        last_name: data.lastName,
+        email: data.email,
+        password: data.password,
+      }
+
+      const response = await registerUser(payload)
+
+      toast.success("Account created! Please log in.")
+      navigate('/login') // or redirect as needed
+    } catch (err) {
+      const errorMessage = err?.response?.data?.message || "Registration failed"
+      toast.error(errorMessage)
+    }
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 mt-6 max-w-md mx-auto">
-
-      {/* First Name */}
-       <h1 className="text-center text-2xl font-bold mb-4">Welcome!</h1>
-
-       {/* Google OAuth */}
+      <h1 className="text-center text-2xl font-bold mb-4">Welcome!</h1>
       <GoogleAuthButton />
 
-
+      {/* First Name */}
       <div className="relative">
-        <Input
-          placeholder="First Name"
-          {...register('firstName')}
-          className="pr-10"
-        />
+        <Input placeholder="First Name" {...register('firstName')} className="pr-10" />
         <User className="absolute right-3 top-2.5 h-5 w-5 text-muted-foreground" />
         {errors.firstName && (
           <p className="text-red-500 text-sm">{errors.firstName.message}</p>
@@ -63,11 +73,7 @@ export default function EmailRegisterForm() {
 
       {/* Last Name */}
       <div className="relative">
-        <Input
-          placeholder="Last Name"
-          {...register('lastName')}
-          className="pr-10"
-        />
+        <Input placeholder="Last Name" {...register('lastName')} className="pr-10" />
         <User className="absolute right-3 top-2.5 h-5 w-5 text-muted-foreground" />
         {errors.lastName && (
           <p className="text-red-500 text-sm">{errors.lastName.message}</p>
@@ -76,12 +82,7 @@ export default function EmailRegisterForm() {
 
       {/* Email */}
       <div className="relative">
-        <Input
-          type="email"
-          placeholder="Email address"
-          {...register('email')}
-          className="pr-10"
-        />
+        <Input type="email" placeholder="Email address" {...register('email')} className="pr-10" />
         <Mail className="absolute right-3 top-2.5 h-5 w-5 text-muted-foreground" />
         {errors.email && (
           <p className="text-red-500 text-sm">{errors.email.message}</p>

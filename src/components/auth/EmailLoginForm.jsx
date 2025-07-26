@@ -3,11 +3,11 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import { useNavigate } from "react-router-dom"
+import axiosInstance from "@/api/axiosInstance"
 
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Mail, Eye, EyeOff } from "lucide-react"
-// import { supabase } from "@/lib/supabaseClient" //  Make sure this path is correct
 
 const schema = z.object({
   email: z.string().email("Enter a valid email"),
@@ -27,29 +27,28 @@ export default function EmailLoginForm() {
   })
 
   const onSubmit = async (data) => {
-    const { error } = await supabase.auth.signInWithPassword({
-      email: data.email,
-      password: data.password,
-    })
+    try {
+      const res = await axiosInstance.post("/auth/login", {
+        email: data.email,
+        password: data.password,
+      })
 
-    if (error) {
-      alert(error.message) // Optional: replace with toast from shadcn/ui
-    } else {
+      const { access_token, user } = res.data
+
+      localStorage.setItem("token", access_token)
+
+      // Optionally, you can store user in context or localStorage
+      // localStorage.setItem("user", JSON.stringify(user))
+
       navigate("/dashboard")
+    } catch (error) {
+      const message = error?.response?.data?.message || "Login failed"
+      alert(message) // TODO: Replace with toast
     }
   }
 
   const handleGoogleLogin = async () => {
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        redirectTo: '${window.location.origin}/dashboard',
-      },
-    })
-
-    if (error) {
-      console.error("Google Sign-In Error:", error.message)
-    }
+    alert("Google login is not implemented with this backend yet.")
   }
 
   return (
@@ -109,7 +108,7 @@ export default function EmailLoginForm() {
 
       <div className="text-center text-sm text-gray-500">or</div>
 
-      {/* Google Auth */}
+      {/* Google Auth - Not implemented */}
       <button
         type="button"
         onClick={handleGoogleLogin}
