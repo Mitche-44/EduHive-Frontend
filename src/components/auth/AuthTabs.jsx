@@ -12,7 +12,7 @@ export default function AuthTabs() {
       {/* Tabs Header */}
       <Tabs value={tab} onValueChange={setTab} className="w-full">
         <TabsList className="grid w-full grid-cols-2 mb-4">
-          <TabsTrigger value="signin">Sign In</TabsTrigger>
+          <TabsTrigger value="signin">Log In</TabsTrigger>
           <TabsTrigger value="register">Register</TabsTrigger>
         </TabsList>
       </Tabs>
