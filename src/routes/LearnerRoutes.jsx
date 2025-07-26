@@ -22,10 +22,10 @@ import LearnerSettingsPage from "../pages/learner/Settings";
 import LearnerPlansPage from "../pages/learner/Plans";
 import LearnerTestimonialsPage from "../pages/learner/Testimonials";
 
-import Team from "../components/admin/Team";
-import PrivacyPolicyPage from "../components/admin/PrivacyPolicy";
-import TermsPage from "../components/admin/TermsAndConditions";
-import FAQsPage from "../components/admin/FAQs";
+import Team from "../pages/learner/Team";
+import PrivacyPolicyPage from "../pages/learner/PrivacyPolicy";
+import TermsPage from "../pages/learner/TermsAndConditions";
+import FAQsPage from "../pages/learner/FAQs";
 
 
 const LearnerRoutes = () => {
@@ -35,10 +35,7 @@ const LearnerRoutes = () => {
       <Route element={<PublicLayout />}>
         
         <Route path="/auth" element={<LearnerAuthPage />} />
-        <Route path="/team" element={<Team />} />
-        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-        <Route path="/terms-and-conditions" element={<TermsPage />} /> 
-        <Route path="/faqs" element={<FAQsPage />} />
+        
 
         {/* This should be last to avoid greedy matching */} 
         <Route path="/*" element={<LearnerHomePage />} />
@@ -58,6 +55,10 @@ const LearnerRoutes = () => {
 
         <Route path="/plans" element={<LearnerPlansPage />} />
         <Route path="/testimonials" element={<LearnerTestimonialsPage />} />
+        <Route path="/team" element={<Team />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+        <Route path="/terms-and-conditions" element={<TermsPage />} /> 
+        <Route path="/faqs" element={<FAQsPage />} />
       </Route>
     </Routes>
   );
