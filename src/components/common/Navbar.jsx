@@ -76,7 +76,7 @@ const Navbar = () => {
             className="bg-gradient-to-r from-[#1A2A44] to-[#005F84] hover:from-[#D6B588] hover:to-[#1A2A44] text-[#F9FAFB] text-sm font-semibold py-2 px-4 lg:px-6 rounded-lg transition duration-300 shadow-md"
           >
             <LogIn size={14} className="mr-2" />
-            Sign In
+            Sign Up
           </Button>
           <Button
             onClick={handleQuoteClick}
