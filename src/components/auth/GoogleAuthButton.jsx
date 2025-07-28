@@ -1,43 +1,40 @@
-import { useGoogleLogin } from '@react-oauth/google';
-import axios from '@/api/axiosInstance';
-import { useNavigate } from 'react-router-dom';
+import React from "react"
+import { useGoogleLogin } from "@react-oauth/google"
+import axiosInstance from "@/api/axiosInstance" // ✅ FIXED
+import { Button } from "@/components/ui/button"
+import { FcGoogle } from "react-icons/fc"
+import { useAuth } from '@/context/AuthContext'
 
-export default function GoogleAuthButton({ label = 'Continue with Google' }) {
-  const navigate = useNavigate();
+const GoogleAuthButton = () => {
+  const { login } = useAuth()
 
-  // 1️ Set up the login hook (implicit flow = id_token directly)
-  const login = useGoogleLogin({
-    flow: 'implicit',          // returns credential directly
-    onSuccess: async (tokenResp) => {
+  const googleLogin = useGoogleLogin({
+    flow: "auth-code",
+    onSuccess: async ({ code }) => {
       try {
-        // tokenResp contains { credential, select_by, ... }
-        const res = await axios.post('/auth/google-login', {
-          id_token: tokenResp.credential,
-        });
-        localStorage.setItem('token', res.data.access_token);
-        navigate('/dashboard');
-      } catch (err) {
-        console.error(err);
-        alert('Google login failed');
+        const response = await axiosInstance.post("/auth/google-login", { code }) // ✅ FIXED
+        login(response.data.access_token, response.data.user)
+      } catch (error) {
+        console.error("Google login failed:", error)
+        alert("Google login failed")
       }
     },
-    onError: () => alert('Google login failed'),
-  });
+    onError: () => {
+      alert("Google login failed")
+    },
+  })
 
-  // fully custom button
   return (
-    <button
+    <Button
       type="button"
-      onClick={() => login()}          //  trigger Google flow
-      className="w-full flex items-center justify-center gap-3 px-4 py-2 
-                 border border-gray-300 rounded-full bg-white hover:bg-gray-100"
+      variant="outline"
+      className="w-full flex gap-2 items-center justify-center"
+      onClick={() => googleLogin()}
     >
-      <img
-        src="https://www.svgrepo.com/show/475656/google-color.svg"
-        alt="Google"
-        className="h-5 w-5"
-      />
-      <span className="font-medium text-sm">{label}</span>
-    </button>
-  );
+      <FcGoogle className="w-5 h-5" />
+      Sign in with Google
+    </Button>
+  )
 }
+
+export default GoogleAuthButton

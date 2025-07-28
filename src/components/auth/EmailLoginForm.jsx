@@ -4,12 +4,12 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import { useNavigate } from "react-router-dom"
 import axiosInstance from "@/api/axiosInstance"
-import GoogleAuthButton from './GoogleAuthButton';
+import GoogleAuthButton from './GoogleAuthButton'
+import { useAuth } from "@/context/AuthContext" // 👈 import auth context
 
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Mail, Eye, EyeOff } from "lucide-react"
-
 
 const schema = z.object({
   email: z.string().email("Enter a valid email"),
@@ -19,6 +19,7 @@ const schema = z.object({
 export default function EmailLoginForm() {
   const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false)
+  const { login } = useAuth() // 👈 use login method from context
 
   const {
     register,
@@ -36,21 +37,11 @@ export default function EmailLoginForm() {
       })
 
       const { access_token, user } = res.data
-
-      localStorage.setItem("token", access_token)
-
-      // Optionally, you can store user in context or localStorage
-      // localStorage.setItem("user", JSON.stringify(user))
-
-      navigate("/dashboard")
+      login(access_token, user) // 👈 call login from context
     } catch (error) {
       const message = error?.response?.data?.message || "Login failed"
       alert(message) // TODO: Replace with toast
     }
-  }
-
-  const handleGoogleLogin = async () => {
-    alert("Google login is not implemented with this backend yet.")
   }
 
   return (
@@ -111,8 +102,7 @@ export default function EmailLoginForm() {
       <div className="text-center text-sm text-gray-500">or</div>
 
       {/* Google Auth */}
-     <GoogleAuthButton label="Continue with Google" />
-
+      <GoogleAuthButton label="Continue with Google" />
 
       {/* Redirect to register */}
       <p className="text-center text-sm mt-4">

@@ -10,6 +10,7 @@ import { Eye, EyeOff, Mail, User } from 'lucide-react'
 import GoogleAuthButton from "./GoogleAuthButton"
 import { registerUser } from '@/api/auth'
 import { toast } from 'sonner' 
+import { useAuth } from '@/context/AuthContext' // 👈 New
 import { useNavigate } from 'react-router-dom'
 
 const schema = z
@@ -27,6 +28,7 @@ const schema = z
 
 export default function EmailRegisterForm() {
   const navigate = useNavigate()
+  const { login } = useAuth() // 👈 From context
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirm, setShowConfirm] = useState(false)
 
@@ -48,9 +50,9 @@ export default function EmailRegisterForm() {
       }
 
       const response = await registerUser(payload)
+      const { access_token, user } = response.data
 
-      toast.success("Account created! Please log in.")
-      navigate('/login') // or redirect as needed
+      login(access_token, user) // 👈 Log the user in right away
     } catch (err) {
       const errorMessage = err?.response?.data?.message || "Registration failed"
       toast.error(errorMessage)
