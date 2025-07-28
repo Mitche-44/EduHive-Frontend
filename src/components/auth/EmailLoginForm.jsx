@@ -4,10 +4,12 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import { useNavigate } from "react-router-dom"
 import axiosInstance from "@/api/axiosInstance"
+import GoogleAuthButton from './GoogleAuthButton';
 
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Mail, Eye, EyeOff } from "lucide-react"
+
 
 const schema = z.object({
   email: z.string().email("Enter a valid email"),
@@ -108,19 +110,9 @@ export default function EmailLoginForm() {
 
       <div className="text-center text-sm text-gray-500">or</div>
 
-      {/* Google Auth - Not implemented */}
-      <button
-        type="button"
-        onClick={handleGoogleLogin}
-        className="w-full flex items-center justify-center gap-3 px-4 py-2 border border-gray-300 rounded-full bg-white hover:bg-gray-100"
-      >
-        <img
-          src="https://www.svgrepo.com/show/475656/google-color.svg"
-          alt="Google"
-          className="h-5 w-5"
-        />
-        <span className="font-medium text-sm">Continue with Google</span>
-      </button>
+      {/* Google Auth */}
+     <GoogleAuthButton label="Continue with Google" />
+
 
       {/* Redirect to register */}
       <p className="text-center text-sm mt-4">
