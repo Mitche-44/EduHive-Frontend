@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
-import LearnerSidebar from "@/components/common/AppSidebar";
+import AppSidebar from "@/components/common/AppSidebar";
 import { Outlet } from "react-router-dom";
 
 export default function LearnerLayout() {
@@ -19,23 +19,17 @@ export default function LearnerLayout() {
       
       {/* Main content below navbar */}
       <div className="flex flex-1 pt-16 overflow-hidden">
-        {/* Collapsible Sidebar */}
-        {sidebarOpen && (
-          <aside className="w-80 shrink-0 h-full sticky top-16 transition-all duration-300 ease-in-out bg-white shadow-lg border-r border-gray-200 z-50">
-            <LearnerSidebar />
-          </aside>
-        )}
+        {/* Sidebar - handles its own width transitions */}
+        <AppSidebar 
+          isOpen={sidebarOpen} 
+          onToggle={toggleSidebar} 
+          className={`shrink-0 h-full sticky top-16 transition-all duration-300 ease-in-out bg-white border-r border-gray-200 z-30 ${
+            sidebarOpen ? 'w-72' : 'w-16'
+          }`}
+        />
         
-        {/* Overlay for mobile when sidebar is open */}
-        {sidebarOpen && (
-          <div 
-            className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
-            onClick={toggleSidebar}
-          />
-        )}
-        
-        {/* Scrollable Page Content with Footer - Always takes full available width */}
-        <main className="flex-1 h-full overflow-y-auto bg-gray-50 text-gray-800 transition-all duration-300 ease-in-out">
+        {/* Scrollable Page Content - let it flex naturally */}
+        <main className="flex-1 h-full overflow-y-auto bg-gray-50 text-gray-800">
           <div className="px-4 sm:px-6 py-6 min-h-full flex flex-col max-w-7xl mx-auto">
             {/* Page content */}
             <div className="flex-1 mb-8">
