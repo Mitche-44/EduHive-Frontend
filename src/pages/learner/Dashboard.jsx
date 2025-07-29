@@ -3,6 +3,7 @@ import { Search, Bell, Settings, MessageCircle, User, ChevronRight } from 'lucid
 import { SidebarTrigger } from "@/components/ui/sidebar";
 
 // Course Card Component
+
 const CourseCard = ({ title, instructor, progress, thumbnail, category }) => (
   <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
     <div className="aspect-video bg-gray-900 relative">

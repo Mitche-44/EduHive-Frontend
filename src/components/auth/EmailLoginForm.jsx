@@ -4,8 +4,9 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import { useNavigate } from "react-router-dom"
 import axiosInstance from "@/api/axiosInstance"
-import GoogleAuthButton from './GoogleAuthButton'
-import { useAuth } from "@/context/AuthContext" // 👈 import auth context
+import GoogleAuthButton from "./GoogleAuthButton"
+import { useAuth } from "@/context/AuthContext"
+import { jwtDecode } from "jwt-decode" // 👈 import this
 
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -19,7 +20,7 @@ const schema = z.object({
 export default function EmailLoginForm() {
   const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false)
-  const { login } = useAuth() // 👈 use login method from context
+  const { login } = useAuth()
 
   const {
     register,
@@ -30,19 +31,38 @@ export default function EmailLoginForm() {
   })
 
   const onSubmit = async (data) => {
-    try {
-      const res = await axiosInstance.post("/auth/login", {
-        email: data.email,
-        password: data.password,
-      })
+  try {
+    const res = await axiosInstance.post("/auth/login", {
+      email: data.email,
+      password: data.password,
+    })
 
-      const { access_token, user } = res.data
-      login(access_token, user) // 👈 call login from context
-    } catch (error) {
-      const message = error?.response?.data?.message || "Login failed"
-      alert(message) // TODO: Replace with toast
+    const { access_token } = res.data
+
+    const decoded = jwtDecode(access_token)
+    console.log("Decoded token:", decoded) // ✅ inspect this
+    const role = decoded?.sub?.role
+// ✅ or decoded?.sub?.role depending on token
+
+    login(access_token)
+
+    if (role === "learner") {
+      console.log("Navigating to /learner/dashboard")
+
+      navigate("/learner/dashboard")
+    } else if (role === "contributor") {
+      navigate("/contributor/manage")
+    } else if (role === "admin") {
+      navigate("/admin/panel")
+    } else {
+      alert("Unknown role")
     }
+  } catch (error) {
+    const message = error?.response?.data?.message || "Login failed"
+    alert(message)
   }
+}
+
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 mt-6 max-w-md mx-auto">

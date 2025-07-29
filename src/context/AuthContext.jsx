@@ -12,7 +12,7 @@ export function AuthProvider({ children }) {
     if (token) {
       try {
         const decoded = jwtDecode(token);
-        setUser(decoded);
+        setUser(decoded.sub); // ✅ ONLY set the user info, not the entire token
         setIsAuthenticated(true);
       } catch (error) {
         console.error("Invalid token:", error);
@@ -25,7 +25,7 @@ export function AuthProvider({ children }) {
     try {
       const decoded = jwtDecode(token);
       localStorage.setItem("token", token);
-      setUser(decoded);
+      setUser(decoded.sub); // ✅ again, only use decoded.sub
       setIsAuthenticated(true);
     } catch (error) {
       console.error("Failed to login:", error);
