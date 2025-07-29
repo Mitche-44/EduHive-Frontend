@@ -17,23 +17,11 @@ export default function AddPath() {
       <Card className="w-full">
         <CardContent className="p-8 space-y-6">
           
-          {/* 1. Path Details */}
+          {/* Path Details */}
           <section className="space-y-4">
             <h2 className="text-lg font-semibold">Path Details</h2>
-
-            {/* Title */}
-            <Input
-              placeholder="Add Title"
-              className="w-full"
-            />
-
-            {/* Description */}
-            <Textarea
-              placeholder="Add a Description"
-              className="w-full"
-            />
-
-            {/* Image Upload */}
+            <Input placeholder="Add Title" className="w-full" />
+            <Textarea placeholder="Add a Description" className="w-full" />
             <div>
               <label
                 htmlFor="pathImage"
@@ -51,7 +39,12 @@ export default function AddPath() {
             </div>
           </section>
 
-        
+          {/*  Add Modules */}
+          <section className="space-y-4">
+            <h2 className="text-lg font-semibold">Add Modules</h2>
+            <Input placeholder="Module Description" className="w-full" />
+            <Input placeholder="Video URL" className="w-full" />
+          </section>
 
           {/* Submit */}
           <Button className="w-full py-3 text-base">Submit</Button>
