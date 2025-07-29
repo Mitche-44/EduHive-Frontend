@@ -8,48 +8,59 @@ import { Button } from '@/components/ui/button';
 import { Image } from 'lucide-react';
 
 export default function AddPath() {
-  // State for drag/drop and preview
+  // Image upload state
   const [isDragActive, setIsDragActive] = useState(false);
   const [preview, setPreview] = useState(null);
 
+  // Modules state
+  const [modules, setModules] = useState([
+    { description: '', videoUrl: '' },
+  ]);
+
+  // Handlers for drag & drop
   const handleDragOver = useCallback((e) => {
     e.preventDefault();
     setIsDragActive(true);
   }, []);
-
   const handleDragLeave = useCallback((e) => {
     e.preventDefault();
     setIsDragActive(false);
   }, []);
-
   const handleDrop = useCallback((e) => {
     e.preventDefault();
     setIsDragActive(false);
     const file = e.dataTransfer.files[0];
-    if (file) {
-      setPreview(URL.createObjectURL(file));
-    }
+    if (file) setPreview(URL.createObjectURL(file));
   }, []);
-
   const handleFileChange = useCallback((e) => {
     const file = e.target.files?.[0];
-    if (file) {
-      setPreview(URL.createObjectURL(file));
-    }
+    if (file) setPreview(URL.createObjectURL(file));
   }, []);
+
+  // Handlers for modules array
+  const handleModuleChange = (index, field, value) => {
+    const updated = [...modules];
+    updated[index][field] = value;
+    setModules(updated);
+  };
+  const addModule = () =>
+    setModules([...modules, { description: '', videoUrl: '' }]);
+  const removeModule = (index) =>
+    setModules(modules.filter((_, i) => i !== index));
 
   return (
     <main className="mx-auto max-w-4xl p-8 space-y-8">
-      {/* Page Title */}
+      {/* Title */}
       <h1 className="text-4xl font-extrabold">Create a Learning Path</h1>
 
-      {/* Path Details Card */}
+      {/* Path Details */}
       <Card className="w-full">
         <CardContent className="p-8 space-y-6">
           <h2 className="text-2xl font-semibold">Path Details</h2>
           <div className="space-y-4">
             <Input placeholder="Add Title" className="w-full" />
             <Textarea placeholder="Add a Description" className="w-full" />
+
             <div
               onDragOver={handleDragOver}
               onDragLeave={handleDragLeave}
@@ -59,7 +70,11 @@ export default function AddPath() {
               }`}
             >
               {preview ? (
-                <img src={preview} alt="Preview" className="max-h-48 rounded-md" />
+                <img
+                  src={preview}
+                  alt="Preview"
+                  className="max-h-48 rounded-md"
+                />
               ) : (
                 <>
                   <Image className="w-6 h-6 mb-2 text-gray-500" />
@@ -79,13 +94,48 @@ export default function AddPath() {
         </CardContent>
       </Card>
 
-      {/* Modules Card */}
+      {/* Modules Section */}
       <Card className="w-full">
         <CardContent className="p-8 space-y-6">
           <h2 className="text-2xl font-semibold">Add Modules</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Input placeholder="Module Description" className="w-full" />
-            <Input placeholder="Video URL" className="w-full" />
+          <div className="space-y-4">
+            {modules.map((mod, idx) => (
+              <div
+                key={idx}
+                className="grid grid-cols-1 md:grid-cols-2 gap-4 items-end"
+              >
+                <Input
+                  placeholder="Module Description"
+                  className="w-full"
+                  value={mod.description}
+                  onChange={(e) =>
+                    handleModuleChange(idx, 'description', e.target.value)
+                  }
+                />
+                <div className="flex gap-4">
+                  <Input
+                    placeholder="Video URL"
+                    className="flex-1"
+                    value={mod.videoUrl}
+                    onChange={(e) =>
+                      handleModuleChange(idx, 'videoUrl', e.target.value)
+                    }
+                  />
+                  {modules.length > 1 && (
+                    <Button
+                      variant="destructive"
+                      onClick={() => removeModule(idx)}
+                    >
+                      Remove
+                    </Button>
+                  )}
+                </div>
+              </div>
+            ))}
+
+            <Button variant="secondary" onClick={addModule}>
+              + Add Module
+            </Button>
           </div>
         </CardContent>
       </Card>
