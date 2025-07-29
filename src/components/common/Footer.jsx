@@ -3,11 +3,13 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from '@/components/ui/input';
+import axios from "axios";
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import apiClient from "@/lib/api/client";
 
 export default function Footer() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -38,11 +40,21 @@ export default function Footer() {
     setIsSubmitting(true);
     setSubmitMessage("Submitting...");
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      setSubmitMessage("Subscribed successfully!");
-      reset();
+      const response = await axios.post("/api/newsletter/subscribe", data);
+
+      if (response.status === 200) {
+        setSubmitMessage("✅ Subscribed successfully!");
+        reset();
+      } else {
+        setSubmitMessage("⚠️ Unexpected server response.");
+      }
     } catch (error) {
-      setSubmitMessage("Error subscribing.");
+      console.error(error);
+      if (error.response?.status === 409) {
+        setSubmitMessage("⚠️ Email already subscribed.");
+      } else {
+        setSubmitMessage("❌ Error subscribing. Try again.");
+      }
     } finally {
       setIsSubmitting(false);
     }
