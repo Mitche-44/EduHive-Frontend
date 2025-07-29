@@ -2,7 +2,13 @@
 
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select';
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -22,6 +28,15 @@ export default function Challenges() {
 
       <Card className="w-full">
         <CardContent className="p-8 space-y-6">
+          {/* Quiz Title */}
+          <div>
+            <h2 className="text-2xl font-semibold mb-2">Quiz Title</h2>
+            <Textarea
+              placeholder="Enter the quiz title here"
+              className="w-full"
+            />
+          </div>
+
           {/* Module Selector */}
           <div>
             <h2 className="text-2xl font-semibold mb-2">Select Module</h2>
