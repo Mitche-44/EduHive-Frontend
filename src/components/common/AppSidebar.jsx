@@ -41,16 +41,11 @@ const navItems = [
     description: "Overview & Analytics"
   },
   {
-    title: "Learning Paths",
-    icon: BookOpen,
-    description: "Structured Courses",
-    children: [
-      { title: "Web Development", url: "/path/web-development", badge: "12" },
-      { title: "Data Science", url: "/path/data-science", badge: "8" },
-      { title: "Machine Learning", url: "/path/machine-learning", badge: "new" },
-      { title: "Mobile Development", url: "/path/mobile-development", badge: "6" },
-    ],
-  },
+ title: "Learning Paths",
+ url: "/Path",
+ icon: BookOpen,
+ description: "Structured Courses"
+},
   { 
     title: "Assessments", 
     url: "/quizes", 
