@@ -12,12 +12,12 @@ export default function AddPath() {
   const [isDragActive, setIsDragActive] = useState(false);
   const [preview, setPreview] = useState(null);
 
-  // Modules state
+  // Modules state: now including title, description, videoUrl
   const [modules, setModules] = useState([
-    { description: '', videoUrl: '' },
+    { title: '', description: '', videoUrl: '' },
   ]);
 
-  // Handlers for drag & drop
+  // Drag & drop handlers
   const handleDragOver = useCallback((e) => {
     e.preventDefault();
     setIsDragActive(true);
@@ -37,23 +37,23 @@ export default function AddPath() {
     if (file) setPreview(URL.createObjectURL(file));
   }, []);
 
-  // Handlers for modules array
+  // Module list handlers
   const handleModuleChange = (index, field, value) => {
     const updated = [...modules];
     updated[index][field] = value;
     setModules(updated);
   };
   const addModule = () =>
-    setModules([...modules, { description: '', videoUrl: '' }]);
+    setModules([...modules, { title: '', description: '', videoUrl: '' }]);
   const removeModule = (index) =>
     setModules(modules.filter((_, i) => i !== index));
 
   return (
     <main className="mx-auto max-w-4xl p-8 space-y-8">
-      {/* Title */}
+      {/* Page Title */}
       <h1 className="text-4xl font-extrabold">Create a Learning Path</h1>
 
-      {/* Path Details */}
+      {/* Path Details Card */}
       <Card className="w-full">
         <CardContent className="p-8 space-y-6">
           <h2 className="text-2xl font-semibold">Path Details</h2>
@@ -94,16 +94,23 @@ export default function AddPath() {
         </CardContent>
       </Card>
 
-      {/* Modules Section */}
+      {/* Modules Card */}
       <Card className="w-full">
         <CardContent className="p-8 space-y-6">
           <h2 className="text-2xl font-semibold">Add Modules</h2>
-          <div className="space-y-4">
+          <div className="space-y-8">
             {modules.map((mod, idx) => (
-              <div
-                key={idx}
-                className="grid grid-cols-1 md:grid-cols-2 gap-4 items-end"
-              >
+              <div key={idx} className="space-y-4">
+                {/* Module Title */}
+                <Textarea
+                  placeholder="Module Title"
+                  className="w-full"
+                  value={mod.title}
+                  onChange={(e) =>
+                    handleModuleChange(idx, 'title', e.target.value)
+                  }
+                />
+                {/* Module Description */}
                 <Input
                   placeholder="Module Description"
                   className="w-full"
@@ -112,24 +119,24 @@ export default function AddPath() {
                     handleModuleChange(idx, 'description', e.target.value)
                   }
                 />
-                <div className="flex gap-4">
-                  <Input
-                    placeholder="Video URL"
-                    className="flex-1"
-                    value={mod.videoUrl}
-                    onChange={(e) =>
-                      handleModuleChange(idx, 'videoUrl', e.target.value)
-                    }
-                  />
-                  {modules.length > 1 && (
-                    <Button
-                      variant="destructive"
-                      onClick={() => removeModule(idx)}
-                    >
-                      Remove
-                    </Button>
-                  )}
-                </div>
+                {/* Video URL */}
+                <Input
+                  placeholder="Video URL"
+                  className="w-full"
+                  value={mod.videoUrl}
+                  onChange={(e) =>
+                    handleModuleChange(idx, 'videoUrl', e.target.value)
+                  }
+                />
+                {/* Remove button */}
+                {modules.length > 1 && (
+                  <Button
+                    variant="destructive"
+                    onClick={() => removeModule(idx)}
+                  >
+                    Remove Module
+                  </Button>
+                )}
               </div>
             ))}
 
