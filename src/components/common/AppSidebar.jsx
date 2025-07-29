@@ -35,51 +35,51 @@ import { useState } from "react";
 const navItems = [
   { 
     title: "Dashboard", 
-    url: "/dashboard", 
+    url: "/learner/dashboard", 
     icon: BarChart3,
     badge: "3",
     description: "Overview & Analytics"
   },
   {
  title: "Learning Paths",
- url: "/Path",
+ url: "/learner/Path",
  icon: BookOpen,
  description: "Structured Courses"
 },
   { 
     title: "Assessments", 
-    url: "/quizes", 
+    url: "/learner/quizes", 
     icon: HelpCircle,
     description: "Tests & Quizzes"
   },
   { 
     title: "Leaderboard", 
-    url: "/leaderboard", 
+    url: "/learner/leaderboard", 
     icon: Trophy,
     description: "Rankings & Competition"
   },
   { 
     title: "Achievements", 
-    url: "/badges", 
+    url: "/learner/badges", 
     icon: Award,
     badge: "2",
     description: "Badges & Certificates"
   },
   { 
     title: "Community", 
-    url: "/community", 
+    url: "/learner/community", 
     icon: Users,
     description: "Connect & Collaborate"
   },
   { 
     title: "My Profile", 
-    url: "/profile", 
+    url: "/learner/profile", 
     icon: User,
     description: "Personal Information"
   },
   { 
     title: "Settings", 
-    url: "/settings", 
+    url: "/learner/settings", 
     icon: Settings,
     description: "Preferences & Config"
   },

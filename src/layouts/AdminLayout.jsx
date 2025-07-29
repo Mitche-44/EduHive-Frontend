@@ -1,9 +1,10 @@
 import { useState } from "react"
 import Navbar from "@/components/common/Navbar"
 // import AdminNav from "@/components/nav/AdminNav"
-import AdminSidebar from "@/components/common/AppSidebar"
+import AdminSidebar from "@/components/admin/AdminPanel"
 import Footer from "@/components/common/Footer"
 import { Outlet } from "react-router-dom"
+
 import { SidebarProvider } from "@/components/ui/sidebar"
 
 export default function AdminLayout() {

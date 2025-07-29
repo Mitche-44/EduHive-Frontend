@@ -51,9 +51,9 @@ export default function EmailLoginForm() {
 
       navigate("/learner/dashboard")
     } else if (role === "contributor") {
-      navigate("/contributor/manage")
+      navigate("/contributor/addpath")
     } else if (role === "admin") {
-      navigate("/admin/panel")
+      navigate("/admin/paths")
     } else {
       alert("Unknown role")
     }
