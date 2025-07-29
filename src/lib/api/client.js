@@ -1,14 +1,15 @@
 import axios from "axios";
 
-const client = axios.create({
-  baseURL: "http://localhost:5000", // Update if different
+const apiClient = axios.create({
+  baseURL: "http://localhost:5000/api", // Update if different
   headers: {
     "Content-Type": "application/json",
+     withCredentials: true,
   },
 });
 
 // Automatically attach JWT if available
-client.interceptors.request.use((config) => {
+apiClient.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
@@ -16,5 +17,5 @@ client.interceptors.request.use((config) => {
   return config;
 });
 
-export default client;
+export default apiClient;
 
