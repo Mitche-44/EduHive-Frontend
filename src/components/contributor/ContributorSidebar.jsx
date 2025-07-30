@@ -24,18 +24,18 @@ import {
   Zap,
 } from "lucide-react";
 import { useLocation, Link } from "react-router-dom";
-import { useState } from "react";
+import { useSidebar } from "@/components/ui/sidebar"; // ✅ Import the context hook
 
 const navItems = [
   {
     title: "My Paths",
-    url: "/contributor/paths",
+    url: "/contributor/addpath",
     icon: FolderKanban,
     description: "Manage your learning paths",
   },
   {
     title: "My Modules",
-    url: "/contributor/modules",
+    url: "/contributor/addmodule",
     icon: Layers,
     description: "Manage your modules",
   },
@@ -53,33 +53,37 @@ const navItems = [
   },
 ];
 
-const SidebarHeaderComponent = ({ isOpen, onToggle }) => (
-  <SidebarHeader className="border-b border-gray-200 p-3 shrink-0 bg-white">
-    <div className="flex items-center justify-between">
-      <div className={`flex items-center gap-2.5 transition-all duration-300 ${isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
-        <div className="flex items-center justify-center w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg shadow-md">
-          <GraduationCap className="h-4 w-4 text-white" />
+const SidebarHeaderComponent = () => {
+  const { open: isOpen, toggleSidebar } = useSidebar();
+
+  return (
+    <SidebarHeader className="border-b border-gray-200 p-3 shrink-0 bg-white">
+      <div className="flex items-center justify-between">
+        <div className={`flex items-center gap-2.5 transition-all duration-300 ${isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
+          <div className="flex items-center justify-center w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg shadow-md">
+            <GraduationCap className="h-4 w-4 text-white" />
+          </div>
+          <div className="flex flex-col">
+            <span className="text-base font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              EduHive
+            </span>
+            <span className="text-xs text-gray-500">Contributor Panel</span>
+          </div>
         </div>
-        <div className="flex flex-col">
-          <span className="text-base font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            EduHive
-          </span>
-          <span className="text-xs text-gray-500">Contributor Panel</span>
-        </div>
+        <button
+          onClick={toggleSidebar}
+          className="hidden md:flex p-1.5 hover:bg-gray-100 rounded-lg transition-all duration-200 hover:scale-105 group"
+        >
+          {isOpen ? (
+            <X className="h-4 w-4 text-gray-600" />
+          ) : (
+            <Menu className="h-4 w-4 text-gray-600" />
+          )}
+        </button>
       </div>
-      <button
-        onClick={onToggle}
-        className="hidden md:flex p-1.5 hover:bg-gray-100 rounded-lg transition-all duration-200 hover:scale-105 group"
-      >
-        {isOpen ? (
-          <X className="h-4 w-4 text-gray-600" />
-        ) : (
-          <Menu className="h-4 w-4 text-gray-600" />
-        )}
-      </button>
-    </div>
-  </SidebarHeader>
-);
+    </SidebarHeader>
+  );
+};
 
 const NavigationItem = ({ item, isOpen, isActive }) => (
   <Link
@@ -139,7 +143,8 @@ const UserInfo = () => (
   </div>
 );
 
-export default function ContributorSidebar({ isOpen, onToggle, className = "" }) {
+export default function ContributorSidebar({ className = "" }) {
+  const { open: isOpen, toggleSidebar: onToggle } = useSidebar();
   const location = useLocation();
   const isActive = (url) => location.pathname === url || location.pathname.startsWith(url + "/");
 
@@ -161,7 +166,7 @@ export default function ContributorSidebar({ isOpen, onToggle, className = "" })
 
       <aside className={`fixed md:relative h-full ${className}`}>
         <div className="h-full flex flex-col bg-white border-r border-gray-200 shadow-xl">
-          <SidebarHeaderComponent isOpen={isOpen} onToggle={onToggle} />
+          <SidebarHeaderComponent />
 
           {isOpen && (
             <div className="px-3 py-2 bg-gradient-to-r from-blue-50 to-purple-50 border-b border-gray-100">
