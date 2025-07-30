@@ -1,6 +1,6 @@
 import { useState } from "react"
 // import ContributorNav from "@/components/nav/ContributorNav"
-import Navbar from "@/components/common/Navbar"
+import Navbar from "@/components/Nav/ContributorNav"
 import ContributorSidebar from "@/components/contributor/ContributorSidebar"
 import Footer from "@/components/common/Footer"
 import { Outlet } from "react-router-dom"

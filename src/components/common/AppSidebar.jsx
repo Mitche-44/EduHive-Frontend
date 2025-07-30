@@ -19,7 +19,6 @@ import {
   Users,
   User,
   Settings,
-  LogOut,
   ChevronDown,
   ChevronRight,
   Menu,
@@ -65,6 +64,13 @@ const navItems = [
     icon: Award,
     badge: "2",
     description: "Badges & Certificates"
+  },
+  { 
+    title: "Plans", 
+    url: "/learner/plans", 
+    icon: Award,
+    badge: "2",
+    description: "Payment Plan"
   },
   { 
     title: "Community", 
@@ -208,35 +214,12 @@ const Badge = ({ badge }) => (
   </span>
 );
 
-// Logout Button Component
-const LogoutButton = ({ isOpen, onLogout }) => (
-  <button
-    className="group w-full flex items-center gap-3 px-3 py-2.5 rounded-xl font-medium text-red-600 hover:bg-red-50 transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] border border-red-200 hover:border-red-300"
-    onClick={onLogout}
-  >
-    <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-red-100 group-hover:bg-red-200 transition-all duration-300">
-      <LogOut className="h-4 w-4" />
-    </div>
-    {isOpen && (
-      <div className="flex flex-col items-start">
-        <span className="text-sm font-semibold">Sign Out</span>
-        <span className="text-xs opacity-70">End your session</span>
-      </div>
-    )}
-    {isOpen && (
-      <div className="ml-auto">
-        <div className="w-1.5 h-1.5 bg-red-400 rounded-full animate-pulse"></div>
-      </div>
-    )}
-  </button>
-);
-
 // User Info Component
 const UserInfo = ({ isOpen }) => {
   if (!isOpen) return null;
   
   return (
-    <div className="mt-3 p-2.5 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border border-gray-200">
+    <div className="p-2.5 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border border-gray-200">
       <div className="flex items-center gap-2.5">
         <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center shadow-sm">
           <User className="h-4 w-4 text-white" />
@@ -254,7 +237,7 @@ const UserInfo = ({ isOpen }) => {
   );
 };
 
-// Main Sidebar Component - Now properly using shadcn/ui Sidebar
+// Main Sidebar Component
 export default function AppSidebar() {
   const location = useLocation();
   const [expandedItems, setExpandedItems] = useState({});
@@ -270,15 +253,8 @@ export default function AppSidebar() {
     }));
   };
 
-  const handleLogout = () => {
-    if (window.confirm('Are you sure you want to sign out?')) {
-      console.log('User logged out');
-      // Add your logout logic here
-    }
-  };
-
   return (
-    <Sidebar className="border-r border-gray-200 shadow-xl">
+    <Sidebar className="border-r border-gray-200 shadow-xl h-screen">
       {/* Header */}
       <SidebarHeader className="border-b border-gray-200 p-3 shrink-0 bg-white">
         <div className="flex items-center justify-between">
@@ -297,7 +273,7 @@ export default function AppSidebar() {
           </div>
           <button
             onClick={toggleSidebar}
-            className="hidden md:flex p-1.5 hover:bg-gray-100 rounded-lg transition-all duration-200 hover:scale-105 group"
+            className="flex p-1.5 hover:bg-gray-100 rounded-lg transition-all duration-200 hover:scale-105 group"
           >
             {isOpen ? (
               <X className="h-4 w-4 text-gray-600 group-hover:text-gray-800 transition-colors" />
@@ -343,12 +319,6 @@ export default function AppSidebar() {
 
       {/* Footer */}
       <SidebarFooter className="border-t border-gray-200 p-3 shrink-0 bg-gray-50/50">
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <LogoutButton isOpen={isOpen} onLogout={handleLogout} />
-          </SidebarMenuItem>
-        </SidebarMenu>
-
         {/* User Info Panel */}
         <UserInfo isOpen={isOpen} />
       </SidebarFooter>
