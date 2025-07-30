@@ -67,6 +67,13 @@ const navItems = [
     description: "Badges & Certificates"
   },
   { 
+    title: "Plans", 
+    url: "/learner/plans", 
+    icon: Award,
+    badge: "2",
+    description: "Payment Plan"
+  },
+  { 
     title: "Community", 
     url: "/learner/community", 
     icon: Users,

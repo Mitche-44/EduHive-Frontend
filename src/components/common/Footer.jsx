@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -35,6 +34,7 @@ export default function Footer() {
     resolver: zodResolver(schema),
     mode: "onBlur",
   });
+
   const onSubmit = async (data) => {
     setIsSubmitting(true);
     setSubmitMessage("Submitting...");
@@ -82,7 +82,6 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="hover:text-indigo-300 underline"
                 >
-                <a href="tel:+254700000000" className="hover:text-indigo-300">
                   +254 700 000 000
                 </a>
 
@@ -95,7 +94,6 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="hover:text-indigo-300 underline"
                 >
-                <a href="mailto:info@eduhive.com" className="hover:text-indigo-300">
                   info@eduhive.com
                 </a>
 
@@ -216,7 +214,6 @@ export default function Footer() {
     </footer>
   );
 }
-
 
 // import React, { useState } from "react";
 // import { Link } from "react-router-dom";
@@ -467,5 +464,3 @@ export default function Footer() {
 //     </footer>
 //   );
 // }
-
-
