@@ -7,7 +7,9 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const handleRegisterClick = () => navigate("/auth?tab=register");
+
   const handleSignInClick = () => navigate("/auth?tab=signin");
+
   const handleQuoteClick = () => navigate("/plans");
   
   return (
@@ -70,6 +72,7 @@ const Navbar = () => {
           >
             <UserPlus size={14} className="mr-2" />
             Register
+
           </Button>
           <Button
             onClick={handleSignInClick}
@@ -77,6 +80,7 @@ const Navbar = () => {
           >
             <LogIn size={14} className="mr-2" />
             Sign In
+
           </Button>
           <Button
             onClick={handleQuoteClick}
@@ -101,3 +105,8 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
+
+
+
