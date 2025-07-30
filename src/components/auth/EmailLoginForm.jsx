@@ -4,6 +4,9 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import { useNavigate } from "react-router-dom"
 import axiosInstance from "@/api/axiosInstance"
+import GoogleAuthButton from "./GoogleAuthButton"
+import { useAuth } from "@/context/AuthContext"
+import { jwtDecode } from "jwt-decode" // 👈 import this
 
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -17,6 +20,7 @@ const schema = z.object({
 export default function EmailLoginForm() {
   const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false)
+  const { login } = useAuth()
 
   const {
     register,
@@ -27,29 +31,38 @@ export default function EmailLoginForm() {
   })
 
   const onSubmit = async (data) => {
-    try {
-      const res = await axiosInstance.post("/auth/login", {
-        email: data.email,
-        password: data.password,
-      })
+  try {
+    const res = await axiosInstance.post("/auth/login", {
+      email: data.email,
+      password: data.password,
+    })
 
-      const { access_token, user } = res.data
+    const { access_token } = res.data
 
-      localStorage.setItem("token", access_token)
+    const decoded = jwtDecode(access_token)
+    console.log("Decoded token:", decoded) // ✅ inspect this
+    const role = decoded?.sub?.role
+// ✅ or decoded?.sub?.role depending on token
 
-      // Optionally, you can store user in context or localStorage
-      // localStorage.setItem("user", JSON.stringify(user))
+    login(access_token)
 
-      navigate("/dashboard")
-    } catch (error) {
-      const message = error?.response?.data?.message || "Login failed"
-      alert(message) // TODO: Replace with toast
+    if (role === "learner") {
+      console.log("Navigating to /learner/dashboard")
+
+      navigate("/learner/dashboard")
+    } else if (role === "contributor") {
+      navigate("/contributor/addmodule")
+    } else if (role === "admin") {
+      navigate("/admin/paths")
+    } else {
+      alert("Unknown role")
     }
+  } catch (error) {
+    const message = error?.response?.data?.message || "Login failed"
+    alert(message)
   }
+}
 
-  const handleGoogleLogin = async () => {
-    alert("Google login is not implemented with this backend yet.")
-  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 mt-6 max-w-md mx-auto">
@@ -108,19 +121,8 @@ export default function EmailLoginForm() {
 
       <div className="text-center text-sm text-gray-500">or</div>
 
-      {/* Google Auth - Not implemented */}
-      <button
-        type="button"
-        onClick={handleGoogleLogin}
-        className="w-full flex items-center justify-center gap-3 px-4 py-2 border border-gray-300 rounded-full bg-white hover:bg-gray-100"
-      >
-        <img
-          src="https://www.svgrepo.com/show/475656/google-color.svg"
-          alt="Google"
-          className="h-5 w-5"
-        />
-        <span className="font-medium text-sm">Continue with Google</span>
-      </button>
+      {/* Google Auth */}
+      <GoogleAuthButton label="Continue with Google" />
 
       {/* Redirect to register */}
       <p className="text-center text-sm mt-4">

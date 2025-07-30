@@ -1,5 +1,3 @@
-'use client'
-
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -10,7 +8,9 @@ import { Eye, EyeOff, Mail, User } from 'lucide-react'
 import GoogleAuthButton from "./GoogleAuthButton"
 import { registerUser } from '@/api/auth'
 import { toast } from 'sonner' 
+import { useAuth } from '@/context/AuthContext'
 import { useNavigate } from 'react-router-dom'
+import { jwtDecode } from 'jwt-decode'
 
 const schema = z
   .object({
@@ -27,6 +27,7 @@ const schema = z
 
 export default function EmailRegisterForm() {
   const navigate = useNavigate()
+  const { login } = useAuth()
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirm, setShowConfirm] = useState(false)
 
@@ -48,9 +49,22 @@ export default function EmailRegisterForm() {
       }
 
       const response = await registerUser(payload)
+      const { access_token } = response.data
 
-      toast.success("Account created! Please log in.")
-      navigate('/login') // or redirect as needed
+      const decoded = jwtDecode(access_token)
+      const role = decoded?.sub?.role
+
+      login(access_token)
+
+      if (role === "learner") {
+        navigate("/learner/dashboard")
+      } else if (role === "contributor") {
+        navigate("/contributor/manage")
+      } else if (role === "admin") {
+        navigate("/admin/panel")
+      } else {
+        alert("Unknown role")
+      }
     } catch (err) {
       const errorMessage = err?.response?.data?.message || "Registration failed"
       toast.error(errorMessage)
@@ -60,7 +74,7 @@ export default function EmailRegisterForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 mt-6 max-w-md mx-auto">
       <h1 className="text-center text-2xl font-bold mb-4">Welcome!</h1>
-      <GoogleAuthButton />
+      <GoogleAuthButton label="Sign up with Google" /> 
 
       {/* First Name */}
       <div className="relative">

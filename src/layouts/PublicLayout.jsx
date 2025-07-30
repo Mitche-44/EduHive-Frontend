@@ -1,27 +1,30 @@
-import { Outlet } from "react-router-dom";
-import Navbar from "@/components/common/Navbar";
-import Footer from "@/components/common/Footer";
+// import PublicNav from "@/components/nav/PublicNav"
+import Navbar from "@/components/common/Navbar"
+import Footer from "@/components/common/Footer"
+import { Outlet } from "react-router-dom"
+
 
 
 {/* <Route path="/pricing" element={<Pricing />} />
 <Route path="/testimonials" element={<Testimonials />} /> */}
 
 
+
 export default function PublicLayout() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="min-h-screen flex flex-col bg-white text-gray-900">
       {/* Sticky Navbar */}
-      <header className="sticky top-0 z-50 bg-white border-b">
+      <header className="sticky top-0 z-50 bg-white shadow">
         <Navbar />
       </header>
 
-      {/* Full-width main content that scrolls together with footer */}
-      <main className="flex-1 w-full px-4 py-8">
+      {/* Main content scrolls with footer */}
+      <main className="flex-1 w-full">
         <Outlet />
       </main>
 
-      {/* Footer (scrolls with content) */}
+      {/* Footer */}
       <Footer />
     </div>
-  );
+  )
 }

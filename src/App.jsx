@@ -1,36 +1,36 @@
-import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import ProtectedRoute from "@/routes/ProtectedRoutes"
+
+import PublicRoutes from "@/routes/PublicRoutes"
+import LearnerRoutes from "@/routes/LearnerRoutes"
+import ContributorRoutes from "@/routes/ContributorRoutes"
+import AdminRoutes from "@/routes/AdminRoutes"
 
 
-// Routes
-import LearnerRoutes from "./routes/LearnerRoutes.jsx";
-import { SidebarProvider } from "@/components/ui/sidebar";
 
-
-const App = () => {
+export default function App() {
   return (
-    <SidebarProvider>
+    <Router>
+      <Routes>
+        {/* Public Routes */}
+        <Route path="/*" element={<PublicRoutes />} />
 
-      <Router>
-        <LearnerRoutes />
+        {/* Learner Routes */}
+        <Route element={<ProtectedRoute allowedRoles={["learner"]} />}>
+          <Route path="/learner/*" element={<LearnerRoutes />} />
+        </Route>
 
-      </Router>
-    </SidebarProvider>
-  );
-};
+        {/* Contributor Routes */}
+        <Route element={<ProtectedRoute allowedRoles={["contributor"]} />}>
+          <Route path="/contributor/*" element={<ContributorRoutes />} />
+        </Route>
 
-export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
+        {/* Admin Routes */}
+        <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
+          <Route path="/admin/*" element={<AdminRoutes />} />
+        </Route>
+      </Routes>
+    </Router>
+  )
+}
