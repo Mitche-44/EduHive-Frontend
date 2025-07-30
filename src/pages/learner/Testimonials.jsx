@@ -290,7 +290,7 @@ export default function Testimonials() {
     handleSubmit,
     formState: {errors}, },
     reset
-  } = useForm({
+  } = {useForm({
     resolver: zodResolver(formSchema),
     defaultValues: { name: "", email: "", role: "", rating: 5, text: "" }
   });
@@ -396,4 +396,5 @@ export default function Testimonials() {
     </div>
   );
 }
+// import { Loader2 } from "lucide-react";
 

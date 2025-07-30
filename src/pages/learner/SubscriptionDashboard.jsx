@@ -25,7 +25,7 @@ const SubscriptionDashboard = () => {
       setHistory(historyRes.data.history);
     } catch (err) {
       console.error("Error loading subscription data", err);
-      toast.error("Failed to load subscription info");
+      // toast.error("Failed to load subscription info");
     } finally {
       setLoading(false);
     }
@@ -38,7 +38,7 @@ const SubscriptionDashboard = () => {
   useEffect(() => {
     if (!socket) return;
 
-    socket.on("subscription_updated", (data) => {
+    socket.on("subscription_updated", () => {
       // toast.success(`Subscription upgraded to: ${data.plan}`);
       fetchSubscription();
     });
