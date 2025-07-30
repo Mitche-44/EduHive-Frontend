@@ -51,7 +51,7 @@ export default function EmailLoginForm() {
 
       navigate("/learner/dashboard")
     } else if (role === "contributor") {
-      navigate("/contributor/addpath")
+      navigate("/contributor/addmodule")
     } else if (role === "admin") {
       navigate("/admin/paths")
     } else {
