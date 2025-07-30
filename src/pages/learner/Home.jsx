@@ -10,19 +10,19 @@ export default function Home() {
         {/* Left Content */}
         <div className="md:w-1/2 space-y-6">
           <h1 className="text-4xl md:text-5xl font-bold">
-            Master Coding & ML with support<br />
+            Master Coding & Programming with support<br />
             from the largest expert network.
           </h1>
 
           <button className="flex items-center gap-2 border border-gray-300 px-6 py-3 rounded-full hover:bg-gray-100 transition">
-            Register with Email
+            Register with G-mail
           </button>
         </div>
 
         {/* Right Image */}
         <div className="md:w-1/2 flex justify-center">
           <img
-            src="https://www.kaggle.com/static/images/home/logged-out/hero-illo@3x.png"
+            src=" https://cdn.pixabay.com/photo/2024/05/20/16/24/ai-generated-8775742_960_720.png  "
             alt="Hero"
             className="max-w-full h-auto"
           />
@@ -40,11 +40,11 @@ export default function Home() {
           </div>
           <div>
             <h3 className="text-xl font-bold mb-2">Developers</h3>
-            <p>Leverage EduHive models, notebooks & datasets.</p>
+            <p>Leverage EduHive modules, courses & challenges.</p>
           </div>
           <div>
             <h3 className="text-xl font-bold mb-2">Contributors</h3>
-            <p>Advance ML with our pre-trained model hub & competitions.</p>
+            <p>Advance programming with our pre-trained model hub & competitions.</p>
           </div>
         </div>
 
@@ -66,76 +66,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* MODELS SECTION */}
-      <section className="px-6 py-16 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex justify-between items-center mb-8">
-            <div>
-              <h2 className="text-2xl font-bold mb-2">🏔️ Models</h2>
-              <p className="text-gray-600">23,600 pre-trained, ready-to-deploy ML models.</p>
-            </div>
-            <button className="text-blue-600 hover:text-blue-800 font-medium">View all →</button>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            {/* Gemma Card */}
-            <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
-                  G
-                </div>
-                <h3 className="font-semibold">Gemma</h3>
-              </div>
-              <p className="text-sm text-gray-600 mb-2">Google</p>
-              <p className="text-sm text-gray-500">
-                Gemma is a family of lightweight, state-of-the-art open models built from the research and...
-              </p>
-            </div>
-
-            {/* Gemma 2 Card */}
-            <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
-                  G
-                </div>
-                <h3 className="font-semibold">Gemma 2</h3>
-              </div>
-              <p className="text-sm text-gray-600 mb-2">Google</p>
-              <p className="text-sm text-gray-500">
-                New implementation of the Gemma model. The Keras 3 implementation.
-              </p>
-            </div>
-
-            {/* DeepSeek R1 Card */}
-            <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
-                  K
-                </div>
-                <h3 className="font-semibold">DeepSeek R1</h3>
-              </div>
-              <p className="text-sm text-gray-600 mb-2">DeepSeek</p>
-              <p className="text-sm text-gray-500">
-                DeepSeek-R1 is an intermediate reasoning model, DeepSeek-R1 for...
-              </p>
-            </div>
-
-            {/* Llama 2 Card */}
-            <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-                  <div className="w-4 h-4 bg-white rounded-full"></div>
-                </div>
-                <h3 className="font-semibold">Llama 2</h3>
-              </div>
-              <p className="text-sm text-gray-600 mb-2">Meta</p>
-              <p className="text-sm text-gray-500">
-                Llama 2 is a collection of pretrained and fine-tuned generative text models...
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+    
 
       {/* COURSES SECTION */}
       <section className="px-6 py-16 bg-gray-50">
@@ -227,19 +158,16 @@ export default function Home() {
             </h2>
             <p className="text-gray-600 mb-8">
               On EduHive you'll find all the resources and knowledge needed
-              for your next real-world ML project.
+              for your next real-world programming project.
             </p>
             <div className="flex flex-wrap gap-8">
+             
               <div>
-                <h3 className="text-xl font-bold">508K</h3>
-                <p className="text-sm text-gray-500 uppercase">Datasets</p>
-              </div>
-              <div>
-                <h3 className="text-xl font-bold">1.4M</h3>
+                <h3 className="text-xl font-bold">50</h3>
                 <p className="text-sm text-gray-500 uppercase">Courses</p>
               </div>
               <div>
-                <h3 className="text-xl font-bold">25,500</h3>
+                <h3 className="text-xl font-bold">50</h3>
                 <p className="text-sm text-gray-500 uppercase">Modules</p>
               </div>
             </div>
@@ -252,15 +180,15 @@ export default function Home() {
             </h2>
             <p className="text-gray-600 mb-8">
               EduHive competitions and courses provide a real-world setting
-              to apply what you learn & connect with other ML practitioners.
+              to apply what you learn & connect with other Developers.
             </p>
             <div className="flex flex-wrap gap-8">
               <div>
-                <h3 className="text-xl font-bold">30,000</h3>
+                <h3 className="text-xl font-bold">100</h3>
                 <p className="text-sm text-gray-500 uppercase">Competitions</p>
               </div>
               <div>
-                <h3 className="text-xl font-bold">5,000</h3>
+                <h3 className="text-xl font-bold">100</h3>
                 <p className="text-sm text-gray-500 uppercase">Challenges</p>
               </div>
               <div>

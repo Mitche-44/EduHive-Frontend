@@ -6,8 +6,10 @@ import { Button } from "@/components/ui/button";
 const Navbar = () => {
   const navigate = useNavigate();
 
-  // const handleRegisterClick = () => navigate("/auth?tab=register");
-  const handleSignInClick = () => navigate("/auth?tab=login");
+  const handleRegisterClick = () => navigate("/auth?tab=register");
+
+  const handleSignInClick = () => navigate("/auth?tab=signin");
+
   const handleQuoteClick = () => navigate("/plans");
   
   return (
@@ -64,19 +66,21 @@ const Navbar = () => {
 
         {/* Buttons */}
         <div className="hidden md:flex space-x-2 lg:space-x-4">
-          {/* <Button
+          <Button
             onClick={handleRegisterClick}
             className="bg-gradient-to-r from-[#1A2A44] to-[#005F84] hover:from-[#D6B588] hover:to-[#1A2A44] text-[#F9FAFB] text-sm font-semibold py-2 px-4 lg:px-6 rounded-lg transition duration-300 shadow-md"
           >
             <UserPlus size={14} className="mr-2" />
             Register
-          </Button> */}
+
+          </Button>
           <Button
             onClick={handleSignInClick}
             className="bg-gradient-to-r from-[#1A2A44] to-[#005F84] hover:from-[#D6B588] hover:to-[#1A2A44] text-[#F9FAFB] text-sm font-semibold py-2 px-4 lg:px-6 rounded-lg transition duration-300 shadow-md"
           >
             <LogIn size={14} className="mr-2" />
-            Sign Up
+            Sign In
+
           </Button>
           <Button
             onClick={handleQuoteClick}
@@ -101,3 +105,8 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
+
+
+
