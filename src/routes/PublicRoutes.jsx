@@ -7,9 +7,9 @@ export default function PublicRoutes() {
   return (
     <Routes>
       <Route element={<PublicLayout />}>
-        {/* <Route index element={<Home />} /> */}
+        <Route index element={<Home />} /> 
         <Route path="/auth" element={<Auth />} />
-        <Route path="/home" element={<Home />} />
+        
       </Route>
     </Routes>
   )
