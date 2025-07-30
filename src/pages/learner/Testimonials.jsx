@@ -265,7 +265,7 @@ const formSchema = z.object({
   email: z.string().email(),
   role: z.string().min(2),
   rating: z.coerce.number().min(1).max(5),
-  text: z.string().min(10)
+  text: z.string().min(10),
 });
 
 const StarRating = ({ count }) => (
@@ -288,15 +288,22 @@ export default function Testimonials() {
   const {
     register,
     handleSubmit,
-    formState: {errors}, },
-    reset
-  } = {useForm({
+    reset,
+    formState: { errors },
+  } = useForm({
     resolver: zodResolver(formSchema),
-    defaultValues: { name: "", email: "", role: "", rating: 5, text: "" }
+    defaultValues: {
+      name: "",
+      email: "",
+      role: "",
+      rating: 5,
+      text: "",
+    },
   });
 
   useEffect(() => {
-    axios.get("/api/testimonials")
+    axios
+      .get("/api/testimonials")
       .then((res) => setTestimonials(res.data.testimonials || []))
       .catch((err) => console.error("Failed to fetch testimonials", err));
   }, []);
@@ -306,7 +313,7 @@ export default function Testimonials() {
       await axios.post("/api/testimonials", data);
       // toast.success("Testimonial submitted successfully");
       reset();
-      // Refresh testimonial list
+
       const res = await axios.get("/api/testimonials");
       setTestimonials(res.data.testimonials || []);
     } catch (err) {
@@ -344,13 +351,22 @@ export default function Testimonials() {
       </h1>
 
       {/* Testimonial Submission Form */}
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 bg-muted/30 p-6 rounded-xl shadow mb-12">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="space-y-4 bg-muted/30 p-6 rounded-xl shadow mb-12"
+      >
         <h2 className="text-xl font-semibold mb-2">Share your testimonial</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Input placeholder="Your Name" {...register("name")} />
           <Input type="email" placeholder="Your Email" {...register("email")} />
           <Input placeholder="Your Role (e.g., Student)" {...register("role")} />
-          <Input type="number" min={1} max={5} placeholder="Rating (1-5)" {...register("rating")} />
+          <Input
+            type="number"
+            min={1}
+            max={5}
+            placeholder="Rating (1-5)"
+            {...register("rating")}
+          />
         </div>
         <Textarea rows={4} placeholder="Your feedback..." {...register("text")} />
         <Button type="submit">Submit Testimonial</Button>
@@ -362,7 +378,10 @@ export default function Testimonials() {
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {currentTestimonials.map((testimonial, index) => (
-              <Card key={index} className="p-4 shadow-lg hover:shadow-xl transition-all">
+              <Card
+                key={index}
+                className="p-4 shadow-lg hover:shadow-xl transition-all"
+              >
                 <CardContent className="flex flex-col items-center text-center gap-4">
                   <Avatar className="w-16 h-16">
                     <AvatarImage src={testimonial.image} alt={testimonial.name} />
@@ -396,5 +415,3 @@ export default function Testimonials() {
     </div>
   );
 }
-// import { Loader2 } from "lucide-react";
-
