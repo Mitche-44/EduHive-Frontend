@@ -70,20 +70,5 @@ const LearnerRoutes = () => {
     </Routes>
   );
 };
-
 export default LearnerRoutes;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
