@@ -90,6 +90,9 @@ export default function AddModules() {
       </div>
     </div>
   )
+}
+
+
 
 // src/pages/contributor/AddModule.jsx
 

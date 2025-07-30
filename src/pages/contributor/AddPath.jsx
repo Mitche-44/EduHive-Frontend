@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
@@ -13,54 +19,71 @@ export default function AddPath() {
   const [form, setForm] = useState({ title: "", description: "" })
   const [editingPathId, setEditingPathId] = useState(null)
 
-  // Fetch paths owned by contributor (assumes auth token is included)
   useEffect(() => {
     fetch("/api/contributor/paths")
-      .then(res => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch paths")
+        return res.json()
+      })
       .then(setPaths)
       .catch(console.error)
   }, [])
 
-  const handleChange = e => {
-    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
+  const handleChange = (e) => {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault()
 
     const method = editingPathId ? "PATCH" : "POST"
-    const url = editingPathId ? `/api/contributor/paths/${editingPathId}` : "/api/contributor/paths"
+    const url = editingPathId
+      ? `/api/contributor/paths/${editingPathId}`
+      : "/api/contributor/paths"
 
     fetch(url, {
       method,
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form),
     })
-      .then(res => res.json())
-      .then(data => {
-        setOpen(false)
-        setForm({ title: "", description: "" })
-        setEditingPathId(null)
-        setPaths(prev =>
+      .then((res) => {
+        if (!res.ok) throw new Error("Submission failed")
+        return res.json()
+      })
+      .then((data) => {
+        setPaths((prev) =>
           editingPathId
-            ? prev.map(p => (p.id === data.id ? data : p))
+            ? prev.map((p) => (p.id === data.id ? data : p))
             : [...prev, data]
         )
+        setForm({ title: "", description: "" })
+        setEditingPathId(null)
+        setOpen(false)
       })
+      .catch(console.error)
   }
 
-  const handleEdit = path => {
+  const handleEdit = (path) => {
     setForm({ title: path.title, description: path.description })
     setEditingPathId(path.id)
     setOpen(true)
   }
 
-  const handleDelete = id => {
+  const handleDelete = (id) => {
     if (!window.confirm("Are you sure you want to delete this path?")) return
 
     fetch(`/api/contributor/paths/${id}`, { method: "DELETE" })
-      .then(() => setPaths(prev => prev.filter(p => p.id !== id)))
+      .then((res) => {
+        if (!res.ok) throw new Error("Delete failed")
+        setPaths((prev) => prev.filter((p) => p.id !== id))
+      })
       .catch(console.error)
+  }
+
+  const handleDialogClose = () => {
+    setOpen(false)
+    setEditingPathId(null)
+    setForm({ title: "", description: "" })
   }
 
   return (
@@ -69,7 +92,7 @@ export default function AddPath() {
         <h2 className="text-2xl font-bold">My Paths</h2>
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
-            <Button>Create New Path</Button>
+            <Button onClick={() => setOpen(true)}>Create New Path</Button>
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
@@ -78,15 +101,34 @@ export default function AddPath() {
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <Label htmlFor="title">Title</Label>
-                <Input id="title" name="title" value={form.title} onChange={handleChange} required />
+                <Input
+                  id="title"
+                  name="title"
+                  value={form.title}
+                  onChange={handleChange}
+                  required
+                />
               </div>
               <div>
                 <Label htmlFor="description">Description</Label>
-                <Textarea id="description" name="description" value={form.description} onChange={handleChange} />
+                <Textarea
+                  id="description"
+                  name="description"
+                  value={form.description}
+                  onChange={handleChange}
+                />
               </div>
               <div className="flex justify-end gap-2">
-                <Button variant="secondary" type="button" onClick={() => setOpen(false)}>Cancel</Button>
-                <Button type="submit">{editingPathId ? "Update" : "Create"}</Button>
+                <Button
+                  variant="secondary"
+                  type="button"
+                  onClick={handleDialogClose}
+                >
+                  Cancel
+                </Button>
+                <Button type="submit">
+                  {editingPathId ? "Update" : "Create"}
+                </Button>
               </div>
             </form>
           </DialogContent>
@@ -94,16 +136,24 @@ export default function AddPath() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {paths.map(path => (
+        {paths.map((path) => (
           <Card key={path.id}>
             <CardHeader>
               <CardTitle className="flex justify-between items-center">
                 <span>{path.title}</span>
                 <div className="flex gap-2">
-                  <Button variant="ghost" size="icon" onClick={() => handleEdit(path)}>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => handleEdit(path)}
+                  >
                     <Pencil className="w-4 h-4" />
                   </Button>
-                  <Button variant="ghost" size="icon" onClick={() => handleDelete(path.id)}>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => handleDelete(path.id)}
+                  >
                     <Trash2 className="w-4 h-4 text-red-600" />
                   </Button>
                 </div>
@@ -117,6 +167,7 @@ export default function AddPath() {
       </div>
     </div>
   )
+}
 
 // src/pages/contributor/AddPath.jsx
 

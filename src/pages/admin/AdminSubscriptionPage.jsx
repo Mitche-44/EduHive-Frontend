@@ -73,7 +73,16 @@ import axios from "@/lib/api/client";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Table, Thead, Tbody, Tr, Th, Td } from "@/components/ui/table"; // create if not exists
+
+
+import {
+  Table,
+  TableHeader as Thead,
+  TableBody as Tbody,
+  TableRow as Tr,
+  TableHead as Th,
+  TableCell as Td
+} from "@/components/ui/table";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 import { RefreshCw } from "lucide-react";
 
