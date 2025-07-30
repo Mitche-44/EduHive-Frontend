@@ -106,9 +106,9 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold mb-3">Quick Links</h4>
             <ul className="space-y-2">
-              <li><Link to="/plans" className="hover:text-indigo-300">Pricing</Link></li>
-              <li><Link to="/dashboard" className="hover:text-indigo-300">Resources</Link></li>
-              <li><Link to="/testimonials" className="hover:text-indigo-300">Testimonials</Link></li>
+              <li><Link to="/learner/plans" className="hover:text-indigo-300">Pricing</Link></li>
+              <li><Link to="/learner/dashboard" className="hover:text-indigo-300">Resources</Link></li>
+              <li><Link to="/learner/testimonials" className="hover:text-indigo-300">Testimonials</Link></li>
             </ul>
           </div>
 
@@ -127,10 +127,10 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold mb-3">Support</h4>
             <ul className="space-y-2 text-indigo-300">
-              <li><Link to="/team" className="hover:text-white">Our Team</Link></li>
-              <li><Link to="/faqs" className="hover:text-white">FAQs</Link></li>
-              <li><Link to="/privacy-policy" className="hover:text-white">Privacy Policy</Link></li>
-              <li><Link to="/terms-and-conditions" className="hover:text-white">Terms & Conditions</Link></li>
+              <li><Link to="/learner/team" className="hover:text-white">Our Team</Link></li>
+              <li><Link to="/learner/faqs" className="hover:text-white">FAQs</Link></li>
+              <li><Link to="/learner/privacy-policy" className="hover:text-white">Privacy Policy</Link></li>
+              <li><Link to="/learner/terms-and-conditions" className="hover:text-white">Terms & Conditions</Link></li>
             </ul>
           </div>
         </div>
