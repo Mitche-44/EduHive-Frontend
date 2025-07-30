@@ -13,7 +13,7 @@ const plans = [
 ];
 
 export default function ChangePlanModal({ open, onClose, currentPlan, onUpgrade }) {
-  const { register, handleSubmit, setValue, watch } = useForm({
+  const { handleSubmit, setValue, watch } = useForm({
     defaultValues: { plan: currentPlan },
   });
 
