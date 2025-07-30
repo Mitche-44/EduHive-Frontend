@@ -1,60 +1,61 @@
+
 import React, { useState } from "react";
 import { Search } from "lucide-react";
 
 const badges = [
   {
     title: "Software Engineering",
-    awarded: 20,
+    awarded: 3,
     winners: ["Alice", "Brian", "Carlos"],
     image:
       "https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F304806%2F59cce1ab07a24566ba2d600e75fbf142%2FAward%20Image-20.svg?generation=1726517815415410&alt=media",
   },
   {
     title: "Python Coder",
-    awarded: 141,
-    winners: ["Jane", "David", "Sara"],
+    awarded: 4,
+    winners: ["Jane", "David", "Sara", "Mitchelle"],
     image:
       "https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F1488634%2F09e1f99bdf3222934ad7769409ec3f6d%2FBadge-26.svg?generation=1727468059623106&alt=media",
   },
   {
     title: "Cyber Security",
-    awarded: 200,
-    winners: ["Elijah", "Grace", "Noah"],
+    awarded: 2,
+    winners: ["Elijah", "Grace"],
     image:
       "https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F304806%2F2904e2b1e8acbde8d5ad13443579dfda%2FAward%20Image-18.svg?generation=1726517780511342&alt=media",
   },
   {
     title: "Machine Learning",
-    awarded: 1469,
-    winners: ["Sophia", "Liam", "Zoe"],
+    awarded: 1,
+    winners: ["Sophia"],
     image:
       "https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F1488634%2F3baaa158e1ff014b90edc64b110f69bb%2FAward%20Image.svg?generation=1727276946467793&alt=media",
   },
   {
     title: "UI Design",
-    awarded: 20,
-    winners: ["Amara", "Jude", "Fiona"],
+    awarded: 5,
+    winners: ["Amara", "Jude", "Fiona","Sammy","Dennis"],
     image:
       "https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F304806%2F21f090fa8230bc1b9c04277ab18e00f5%2FAward%20Image.svg?generation=1727209916661102&alt=media",
   },
   {
     title: "UX Design",
-    awarded: 10,
+    awarded: 3,
     winners: ["Moses", "Nia", "Yara"],
     image:
       "https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F304806%2Fb4f4e39130efa963a447e045350fd6bf%2FAward%20Image-10.svg?generation=1726113967704528&alt=media",
   },
   {
     title: "Graphics Design",
-    awarded: 8,
+    awarded: 3,
     winners: ["Leo", "Isaac", "Hope"],
     image:
       "https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F1488634%2F67d3960ab66dd17a3b6b1546ca8c3acb%2FBadge-40.svg?generation=1727468269875327&alt=media",
   },
   {
     title: "Best Contributor",
-    awarded: 15,
-    winners: ["Emily", "Samuel", "Lara"],
+    awarded: 4,
+    winners: ["Emily", "Samuel", "Lara", "Peter"],
     image:
       "https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F304806%2F5ef10fe7ebd4bd327af4a5ceaac8cf35%2FAward%20Image-23.svg?generation=1726517891877959&alt=media",
   },

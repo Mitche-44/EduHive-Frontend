@@ -3,6 +3,13 @@ import Navbar from "@/components/common/Navbar"
 import Footer from "@/components/common/Footer"
 import { Outlet } from "react-router-dom"
 
+
+
+{/* <Route path="/pricing" element={<Pricing />} />
+<Route path="/testimonials" element={<Testimonials />} /> */}
+
+
+
 export default function PublicLayout() {
   return (
     <div className="min-h-screen flex flex-col bg-white text-gray-900">
