@@ -30,6 +30,7 @@ import {
 } from "lucide-react";
 import { useLocation, Link } from "react-router-dom";
 import { useState } from "react";
+import { useSidebar } from "@/components/ui/sidebar";
 
 // Navigation configuration
 const navItems = [
@@ -41,11 +42,11 @@ const navItems = [
     description: "Overview & Analytics"
   },
   {
- title: "Learning Paths",
- url: "/learner/Path",
- icon: BookOpen,
- description: "Structured Courses"
-},
+    title: "Learning Paths",
+    url: "/learner/path",
+    icon: BookOpen,
+    description: "Structured Courses"
+  },
   { 
     title: "Assessments", 
     url: "/learner/quizes", 
@@ -85,52 +86,25 @@ const navItems = [
   },
 ];
 
-// Header Component
-const SidebarHeaderComponent = ({ isOpen, onToggle }) => (
-  <SidebarHeader className="border-b border-gray-200 p-3 shrink-0 bg-white">
-    <div className="flex items-center justify-between">
-      <div className={`flex items-center gap-2.5 transition-all duration-300 ${
-        isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-      }`}>
-        <div className="flex items-center justify-center w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg shadow-md">
-          <GraduationCap className="h-4 w-4 text-white" />
-        </div>
-        <div className="flex flex-col">
-          <span className="text-base font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            LearnHub
-          </span>
-          <span className="text-xs text-gray-500">Learning Management</span>
-        </div>
-      </div>
-      <button
-        onClick={onToggle}
-        className="hidden md:flex p-1.5 hover:bg-gray-100 rounded-lg transition-all duration-200 hover:scale-105 group"
-      >
-        {isOpen ? (
-          <X className="h-4 w-4 text-gray-600 group-hover:text-gray-800 transition-colors" />
-        ) : (
-          <Menu className="h-4 w-4 text-gray-600 group-hover:text-gray-800 transition-colors" />
-        )}
-      </button>
-    </div>
-  </SidebarHeader>
-);
-
 // Quick Stats Component
-const QuickStats = () => (
-  <div className="px-3 py-2 bg-gradient-to-r from-blue-50 to-purple-50 border-b border-gray-100">
-    <div className="flex items-center justify-between text-xs">
-      <div className="flex items-center gap-2">
-        <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
-        <span className="text-gray-600">Active Session</span>
-      </div>
-      <div className="flex items-center gap-1 text-gray-500">
-        <Bell className="h-3 w-3" />
-        <span>5</span>
+const QuickStats = ({ isOpen }) => {
+  if (!isOpen) return null;
+  
+  return (
+    <div className="px-3 py-2 bg-gradient-to-r from-blue-50 to-purple-50 border-b border-gray-100">
+      <div className="flex items-center justify-between text-xs">
+        <div className="flex items-center gap-2">
+          <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
+          <span className="text-gray-600">Active Session</span>
+        </div>
+        <div className="flex items-center gap-1 text-gray-500">
+          <Bell className="h-3 w-3" />
+          <span>5</span>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 // Navigation Item Component
 const NavigationItem = ({ item, isOpen, isActive, isExpanded, onToggleExpanded }) => {
@@ -258,29 +232,33 @@ const LogoutButton = ({ isOpen, onLogout }) => (
 );
 
 // User Info Component
-const UserInfo = () => (
-  <div className="mt-3 p-2.5 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border border-gray-200">
-    <div className="flex items-center gap-2.5">
-      <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center shadow-sm">
-        <User className="h-4 w-4 text-white" />
-      </div>
-      <div className="flex-1 min-w-0">
-        <p className="text-sm font-semibold text-gray-800 truncate">Student Portal</p>
-        <p className="text-xs text-gray-500 truncate">Active Learning Mode</p>
-      </div>
-      <div className="flex items-center gap-1">
-        <Zap className="h-3 w-3 text-yellow-500" />
-        <span className="text-xs text-yellow-600 font-bold">Pro</span>
+const UserInfo = ({ isOpen }) => {
+  if (!isOpen) return null;
+  
+  return (
+    <div className="mt-3 p-2.5 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border border-gray-200">
+      <div className="flex items-center gap-2.5">
+        <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center shadow-sm">
+          <User className="h-4 w-4 text-white" />
+        </div>
+        <div className="flex-1 min-w-0">
+          <p className="text-sm font-semibold text-gray-800 truncate">Student Portal</p>
+          <p className="text-xs text-gray-500 truncate">Active Learning Mode</p>
+        </div>
+        <div className="flex items-center gap-1">
+          <Zap className="h-3 w-3 text-yellow-500" />
+          <span className="text-xs text-yellow-600 font-bold">Pro</span>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
-// Main Sidebar Component
-// Main Sidebar Component
-export default function AppSidebar({ isOpen, onToggle, className = "" }) {
+// Main Sidebar Component - Now properly using shadcn/ui Sidebar
+export default function AppSidebar() {
   const location = useLocation();
   const [expandedItems, setExpandedItems] = useState({});
+  const { open: isOpen, toggleSidebar } = useSidebar();
 
   const isActive = (url) => 
     location.pathname === url || location.pathname.startsWith(url + "/");
@@ -293,90 +271,87 @@ export default function AppSidebar({ isOpen, onToggle, className = "" }) {
   };
 
   const handleLogout = () => {
-    // Add your logout logic here
     if (window.confirm('Are you sure you want to sign out?')) {
       console.log('User logged out');
-      // Redirect or call logout API
+      // Add your logout logic here
     }
   };
 
   return (
-    <>      
-      {/* Mobile Overlay */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-20 lg:hidden transition-opacity duration-300"
-          onClick={onToggle}
-        />
-      )}
-
-      {/* Sidebar */}
-      <aside className={`fixed md:relative h-full ${className}`}>
-        <div className="h-full flex flex-col bg-white border-r border-gray-200 shadow-xl">
-          
-          {/* Header */}
-          <SidebarHeaderComponent isOpen={isOpen} onToggle={onToggle} />
-
-          {/* Quick Stats */}
-          {isOpen && <QuickStats />}
-
-          {/* Navigation Content */}
-          <SidebarContent className="flex-1 overflow-y-auto px-2 py-4 custom-scrollbar">
-            <SidebarGroup>
-              <SidebarGroupLabel 
-                className={`text-xs font-semibold text-gray-500 uppercase tracking-wider mb-4 px-3 transition-all duration-300 ${
-                  isOpen ? 'opacity-100' : 'opacity-0'
-                }`}
-              >
-                Navigation
-              </SidebarGroupLabel>
-              <SidebarGroupContent>
-                <SidebarMenu className="space-y-1">
-                  {navItems.map((item) => (
-                    <SidebarMenuItem key={item.title}>
-                      <NavigationItem
-                        item={item}
-                        isOpen={isOpen}
-                        isActive={isActive}
-                        isExpanded={expandedItems[item.title]}
-                        onToggleExpanded={toggleExpanded}
-                      />
-                    </SidebarMenuItem>
-                  ))}
-                </SidebarMenu>
-              </SidebarGroupContent>
-            </SidebarGroup>
-          </SidebarContent>
-
-          {/* Footer */}
-          <SidebarFooter className="border-t border-gray-200 p-3 shrink-0 bg-gray-50/50">
-            <SidebarMenu>
-              <SidebarMenuItem>
-                <LogoutButton isOpen={isOpen} onLogout={handleLogout} />
-              </SidebarMenuItem>
-            </SidebarMenu>
-
-            {/* User Info Panel */}
-            {isOpen && <UserInfo />}
-          </SidebarFooter>
+    <Sidebar className="border-r border-gray-200 shadow-xl">
+      {/* Header */}
+      <SidebarHeader className="border-b border-gray-200 p-3 shrink-0 bg-white">
+        <div className="flex items-center justify-between">
+          <div className={`flex items-center gap-2.5 transition-all duration-300 ${
+            isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+          }`}>
+            <div className="flex items-center justify-center w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg shadow-md">
+              <GraduationCap className="h-4 w-4 text-white" />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-base font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                LearnHub
+              </span>
+              <span className="text-xs text-gray-500">Learning Management</span>
+            </div>
+          </div>
+          <button
+            onClick={toggleSidebar}
+            className="hidden md:flex p-1.5 hover:bg-gray-100 rounded-lg transition-all duration-200 hover:scale-105 group"
+          >
+            {isOpen ? (
+              <X className="h-4 w-4 text-gray-600 group-hover:text-gray-800 transition-colors" />
+            ) : (
+              <Menu className="h-4 w-4 text-gray-600 group-hover:text-gray-800 transition-colors" />
+            )}
+          </button>
         </div>
-      </aside>
+      </SidebarHeader>
 
-      <style jsx>{`
-        .custom-scrollbar::-webkit-scrollbar {
-          width: 3px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-          background: transparent;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: rgba(156, 163, 175, 0.3);
-          border-radius: 2px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-          background: rgba(156, 163, 175, 0.5);
-        }
-      `}</style>
-    </>
+      {/* Quick Stats */}
+      <QuickStats isOpen={isOpen} />
+
+      {/* Navigation Content */}
+      <SidebarContent className="flex-1">
+        <div className="px-2 py-4 h-full overflow-y-auto">
+          <SidebarGroup>
+            <SidebarGroupLabel 
+              className={`text-xs font-semibold text-gray-500 uppercase tracking-wider mb-4 px-3 transition-all duration-300 ${
+                isOpen ? 'opacity-100' : 'opacity-0'
+              }`}
+            >
+              Navigation
+            </SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu className="space-y-1">
+                {navItems.map((item) => (
+                  <SidebarMenuItem key={item.title}>
+                    <NavigationItem
+                      item={item}
+                      isOpen={isOpen}
+                      isActive={isActive}
+                      isExpanded={expandedItems[item.title]}
+                      onToggleExpanded={toggleExpanded}
+                    />
+                  </SidebarMenuItem>
+                ))}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        </div>
+      </SidebarContent>
+
+      {/* Footer */}
+      <SidebarFooter className="border-t border-gray-200 p-3 shrink-0 bg-gray-50/50">
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <LogoutButton isOpen={isOpen} onLogout={handleLogout} />
+          </SidebarMenuItem>
+        </SidebarMenu>
+
+        {/* User Info Panel */}
+        <UserInfo isOpen={isOpen} />
+      </SidebarFooter>
+    </Sidebar>
   );
 }
