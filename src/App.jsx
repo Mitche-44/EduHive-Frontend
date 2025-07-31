@@ -7,8 +7,6 @@ import LearnerRoutes from "@/routes/LearnerRoutes"
 import ContributorRoutes from "@/routes/ContributorRoutes"
 import AdminRoutes from "@/routes/AdminRoutes"
 
-
-
 export default function App() {
   return (
     <Router>
