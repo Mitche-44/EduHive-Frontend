@@ -1,12 +1,6 @@
-
 import React, { useEffect, useState } from "react";
 import { ThumbsUp, MessageSquare } from "lucide-react";
-import {
-  getPosts,
-  createPost,
-  emitNewPost,
-  onNewPost,
-} from "../../api/community";
+import { getPosts, createPost } from "../../api/community";
 
 const Community = () => {
   const [forumsData, setForumsData] = useState({});
@@ -41,26 +35,6 @@ const Community = () => {
     loadPosts();
   }, [activeForum]);
 
-  useEffect(() => {
-    onNewPost((post) => {
-      setForumsData((prev) => {
-        const forum = prev[post.forum] || {
-          title: post.forum,
-          description: "",
-          posts: [],
-        };
-
-        return {
-          ...prev,
-          [post.forum]: {
-            ...forum,
-            posts: [post, ...forum.posts],
-          },
-        };
-      });
-    });
-  }, []);
-
   const forum = forumsData[activeForum] || {
     title: activeForum,
     description: "",
@@ -77,7 +51,22 @@ const Community = () => {
 
     try {
       const savedPost = await createPost(activeForum, payload);
-      emitNewPost({ ...savedPost, forum: activeForum });
+
+      setForumsData((prev) => {
+        const forum = prev[activeForum] || {
+          title: activeForum,
+          description: "",
+          posts: [],
+        };
+        return {
+          ...prev,
+          [activeForum]: {
+            ...forum,
+            posts: [savedPost, ...forum.posts],
+          },
+        };
+      });
+
       setNewPostTitle("");
       setNewPostContent("");
     } catch (err) {
