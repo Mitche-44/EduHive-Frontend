@@ -1,5 +1,4 @@
 import axios from "axios";
-import { io } from "socket.io-client";
 
 // Axios instance
 const api = axios.create({
@@ -14,11 +13,6 @@ api.interceptors.request.use((config) => {
     config.headers.Authorization = `Bearer ${token}`;
   }
   return config;
-});
-
-// Socket.IO client
-const socket = io(import.meta.env.VITE_API_BASE_URL.replace("/api", ""), {
-  withCredentials: true,
 });
 
 // === REST API ===
@@ -37,34 +31,4 @@ export const likePost = async (postId) => {
   return res.data;
 };
 
-// === WebSocket: Emitters ===
-export const emitNewPost = (post) => {
-  socket.emit("new_post", post);
-};
-
-export const emitLikePost = (postId) => {
-  socket.emit("like_post", { postId });
-};
-
-// === WebSocket: Listeners with cleanup ===
-
-// Keep track of handlers to avoid duplicates
-let newPostHandler = null;
-let likePostHandler = null;
-
-export const onNewPost = (callback) => {
-  if (newPostHandler) socket.off("new_post", newPostHandler); // cleanup
-  newPostHandler = callback;
-  socket.on("new_post", newPostHandler);
-};
-
-export const onLikePost = (callback) => {
-  if (likePostHandler) socket.off("like_post", likePostHandler); // cleanup
-  likePostHandler = callback;
-  socket.on("like_post", likePostHandler);
-};
-
 export default api;
-
-
-
