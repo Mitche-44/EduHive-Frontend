@@ -1,120 +1,92 @@
 
-#  EduHive-Frontend
-
-Welcome to **EduHive**, a crowdsourced learning platform with gamification built to help learners, contributors, and admins collaborate in a fun and interactive learning environment.
-
-This repository contains the **React (Vite)** frontend for the EduHive platform.
 
 ---
 
-## Project Overview
+# EduHive Frontend
 
-**EduHive** is a community-powered learning platform where users can:
+EduHive is a collaborative, gamified learning platform for tech enthusiasts. This is the frontend of the application, built with React, Tailwind CSS, and Socket.IO for real-time updates.
 
-* Create and follow structured learning paths
-* Earn XP, badges, and rank on leaderboards
-* Interact with content and other learners
-* Contribute resources and quizzes
-* Participate in gamified challenges
+## Features
 
----
-
-## Folder Structure
-
-```
-EduHive-Frontend/
-├── public/            
-├── src/
-│   ├── assets/          Images, icons, etc.
-│   ├── components/      # Reusable UI components
-│   ├── pages/           # Page components (Profile, Dashboard, Leaderboard)
-│   ├── routes/        
-│   ├── api/    
-│   ├── utils/          
-│   ├── App.jsx         
-│   ├── main.jsx        
-├── .env                 
-├── index.html
-└── README.md
-```
-
----
+* User registration and login (email & Google OAuth)
+* Real-time community forums
+* Learning paths with modules and quizzes
+* Gamification via badges and leaderboards
+* Contributor and admin dashboards
+* Subscription and testimonial system
 
 ## Tech Stack
 
-* **Frontend Framework**: [Vite](https://vitejs.dev/) + [Vue 3](https://vuejs.org/) *(or React if using React template)*
-* **UI Library**: TailwindCSS + Custom Components
-* **Routing**: React Router DOM
-* **State Management**: Context API (or Pinia/Vuex for Vue)
-* **API Communication**: Axios
-* **Charting**: Chart.js or Recharts (for XP graphs)
+* **Frontend:** React, Tailwind CSS, Axios, Socket.IO-client
+* **Backend (separate repo):** Flask (RESTful API & Socket.IO)
+* **Authentication:** JWT, Google OAuth
+* **Deployment:** Vercel (Frontend), Render (Backend)
+* **Other Tools:** Supabase (Storage), Figma (Design)
 
----
+## Project Structure
 
-##  Getting Started
+```
+src/
+├── api/               # API functions (REST & WebSocket)
+├── components/        # Reusable UI components
+├── pages/             # Page views for routes
+├── assets/            # Images and icons
+└── App.jsx            # Main app with routing
+```
 
-### Prerequisites
+## Getting Started
 
-* Node.js >= 16
-* NPM or Yarn
-* Backend running locally on port `5000` or specified in `.env`
-
-### Installation
+### 1. Clone the repo
 
 ```bash
-# clone the frontend repo
 git clone https://github.com/Mitche-44/EduHive-Frontend.git
 cd EduHive-Frontend
+```
 
-# install dependencies
+### 2. Install dependencies
+
+```bash
 npm install
+```
 
-# start development server
+### 3. Create a `.env` file (see Vercel for actual values)
+
+Environment variables are managed via Vercel. The `.env` file is excluded from version control.
+
+```env
+VITE_API_BASE_URL=<your-backend-url>/api
+VITE_SOCKET_URL=<your-backend-url>
+VITE_GOOGLE_CLIENT_ID=<your-client-id>
+```
+
+> Note: Never commit secrets or credentials to the repository.
+
+### 4. Run locally
+
+```bash
 npm run dev
 ```
 
-### Environment Variables
+App will be served at: `http://localhost:5173`
 
-Create a `.env` file in the root with:
+## Deployment
 
-```env
-VITE_API_URL=http://localhost:5000
-```
-
----
-
-##  Features
-
-*  **Auth**: Role-based access for Admin, Contributor, Learner
-*  **Learning Paths**: View, follow, and complete modules with quizzes
-*  **Gamification**: Earn XP, unlock badges, climb leaderboards
-* **Community**: Comment, rate, and engage with learning content
-*  **Admin Tools**: Moderate submissions, add challenges
-*  **Contributor Tools**: Create paths, quizzes, and share resources
-*  **Profile**: Track XP, badges, progress, and contributions
-
----
-
-## 🔗 Related Repos
-
-*  **Backend**: [EduHive-Backend](https://github.com/Mitche-44/EduHive-Backend) — Flask API
-
----
+* **Frontend:** [Vercel](https://edu-hive-frontend.vercel.app/)
+* **Backend:** [Render](https://eduhive-backend-l6vz.onrender.com )
 
 ## Contributing
 
-1. Fork the repo
-2. Create a new branch: `git checkout -b feature-name`
-3. Commit changes: `git commit -m 'Add some feature'`
-4. Push to the branch: `git push origin feature-name`
-5. Submit a pull request
+If you'd like to contribute:
 
----
+1. Fork the repo
+2. Create a new branch (`git checkout -b feature-name`)
+3. Commit your changes (`git commit -m "Add feature"`)
+4. Push to the branch (`git push origin feature-name`)
+5. Open a Pull Request
 
 ## License
 
 This project is licensed under the MIT License.
 
 ---
-
 
