@@ -72,7 +72,7 @@ export default function Home() {
               <h2 className="text-2xl font-bold mb-2">🎓 Courses</h2>
               <p className="text-gray-600">Earn a signed certificate and learn new techniques in our no-cost, hands-on courses.</p>
             </div>
-            <button className="text-blue-600 hover:text-blue-800 font-medium">View all →</button>
+            
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
