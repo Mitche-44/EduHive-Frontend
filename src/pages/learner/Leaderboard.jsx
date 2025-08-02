@@ -10,7 +10,10 @@ import { Trophy, User } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 
-const socket = io("http://localhost:5000/leaderboard"); // adjust for prod URL
+//const socket = io("http://localhost:5000/leaderboard"); // adjust for prod URL
+const socket = io(import.meta.env.VITE_SOCKET_URL.replace("/api", ""), {
+  withCredentials: true,
+});
 
 const LeaderboardPage = () => {
   const [leaders, setLeaders] = useState([]);

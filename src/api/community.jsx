@@ -7,7 +7,7 @@ const api = axios.create({
   withCredentials: true,
 });
 
-// ✅ Add JWT token from localStorage to headers
+// Add JWT token from localStorage to headers
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) {
@@ -17,7 +17,7 @@ api.interceptors.request.use((config) => {
 });
 
 // Socket.IO client
-const socket = io(import.meta.env.VITE_API_BASE_URL.replace("/api", ""), {
+const socket = io(import.meta.env.VITE_SOCKET_URL.replace("/api", ""), {
   withCredentials: true,
 });
 
