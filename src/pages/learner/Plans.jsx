@@ -54,10 +54,10 @@ const Pricing = () => {
       navigate("learner/dashboard");
     } else {
         alert(`You have selected the ${plan} plan. Proceeding to payment...`);
-        navigate("/payment"); // Adjust this path as needed
+        navigate("/learner/payment"); // Adjust this path as needed
     }
     // Redirect to payment page with selected plan and billing cycle
-    navigate(`/payment?plan=${plan.toLowerCase()}&billing=${billingCycle}`);
+    // navigate(`/payment?plan=${plan.toLowerCase()}&billing=${billingCycle}`);
   };
 
   const handleSupport = () => {

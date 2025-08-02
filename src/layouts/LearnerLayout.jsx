@@ -1,4 +1,4 @@
-import Navbar from "@/components/common/Navbar"
+import Navbar from "@/components/Nav/learnerNav"
 import Footer from "@/components/common/Footer"
 import AppSidebar from "@/components/common/AppSidebar"
 import { Outlet } from "react-router-dom"

@@ -7,7 +7,7 @@ export default function ProtectedRoute({ allowedRoles = [] }) {
 
 
   if (!isAuthenticated) {
-    return <Navigate to="/Home" replace />
+    return <Navigate to="" replace />
   }
 
   if (allowedRoles.length && !allowedRoles.includes(user?.role)) {
