@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -58,7 +57,7 @@ const Pricing = () => {
         navigate("/learner/payment"); // Adjust this path as needed
     }
     // Redirect to payment page with selected plan and billing cycle
-    // navigate(`/payment?plan=${plan.toLowerCase()}&billing=${billingCycle}`);
+    //navigate(`/payment?plan=${plan.toLowerCase()}&billing=${billingCycle}`);
   };
 
   const handleSupport = () => {
@@ -96,7 +95,7 @@ const Pricing = () => {
               <ul className="text-sm text-left mb-6">
                 {plan.features.map((feature, index) => (
                   <li key={index} className="mb-2">
-                     {feature}
+                    ✅ {feature}
                   </li>
                 ))}
               </ul>
@@ -124,4 +123,3 @@ const Pricing = () => {
 };
 
 export default Pricing;
-
