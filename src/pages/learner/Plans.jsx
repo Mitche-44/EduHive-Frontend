@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -95,7 +96,7 @@ const Pricing = () => {
               <ul className="text-sm text-left mb-6">
                 {plan.features.map((feature, index) => (
                   <li key={index} className="mb-2">
-                    ✅ {feature}
+                     {feature}
                   </li>
                 ))}
               </ul>
@@ -123,3 +124,4 @@ const Pricing = () => {
 };
 
 export default Pricing;
+

@@ -10,7 +10,7 @@ const Navbar = () => {
 
   const handleSignInClick = () => navigate("/auth?tab=signin");
 
-  const handleQuoteClick = () => navigate("/plans");
+  const handleQuoteClick = () => navigate("/learner/plans");
   
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#1A2A44] text-[#F9FAFB] border-b border-[#005F84]">
@@ -33,7 +33,7 @@ const Navbar = () => {
             <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#274AB3] transform scale-x-0 hover:scale-x-100 transition-transform duration-300"></span>
           </Link>
           <Link 
-            to="/community" 
+            to="/learner/community" 
             className="relative px-4 py-2 hover:text-[#274AB3] transition duration-300 flex items-center gap-2"
           >
             <Users size={14} />
@@ -41,21 +41,21 @@ const Navbar = () => {
             <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#274AB3] transform scale-x-0 hover:scale-x-100 transition-transform duration-300"></span>
           </Link>
           <Link
-            to="/quizes"
+            to="/learner/quizes"
             className="relative px-4 py-2 hover:text-[#274AB3] transition duration-300"
           >
             Competitions
             <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#274AB3] transform scale-x-0 hover:scale-x-100 transition-transform duration-300"></span>
           </Link>
           <Link 
-            to="/path" 
+            to="/learner/path" 
             className="relative px-4 py-2 hover:text-[#274AB3] transition duration-300"
           >
             Courses
             <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#274AB3] transform scale-x-0 hover:scale-x-100 transition-transform duration-300"></span>
           </Link>
           <Link 
-            to="/badges" 
+            to="/learner/badges" 
             className="relative px-4 py-2 hover:text-[#274AB3] transition duration-300 flex items-center gap-2"
           >
             <BadgeCheck size={14} />
@@ -105,8 +105,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-
-
-
-

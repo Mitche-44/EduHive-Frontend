@@ -16,6 +16,7 @@ import LearnerAuthPage from "../pages/learner/Auth";
 import LearnerPathPage from "../pages/learner/Path";
 import LearnerProfilePage from "../pages/learner/Profile";
 import LearnerQuizesPage from "../pages/learner/Quizes";
+import LearnerQuestionsPage from "../pages/learner/Questions";
 import LearnerSettingsPage from "../pages/learner/Settings";
 
 
@@ -53,6 +54,7 @@ const LearnerRoutes = () => {
           <Route path="path" element={<LearnerPathPage />} />
           <Route path="profile" element={<LearnerProfilePage />} />
           <Route path="quizes" element={<LearnerQuizesPage />} />
+          <Route path="questions" element={<LearnerQuizesPage />} />
           <Route path="settings" element={<LearnerSettingsPage />} />
           <Route path="plans" element={<LearnerPlansPage />} />
           <Route path="testimonials" element={<LearnerTestimonialsPage />} />
@@ -70,20 +72,5 @@ const LearnerRoutes = () => {
     </Routes>
   );
 };
-
 export default LearnerRoutes;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
